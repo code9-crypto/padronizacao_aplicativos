@@ -2,14 +2,11 @@ package gui;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 import gui.util.Alerts;
 import gui.util.FolderOrFileFinder;
 import gui.util.SearcherVerify;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 
@@ -30,6 +27,21 @@ public class MainViewController {
 
 	@FXML
 	private Button btInstallAtualizacaoAdobeReader;
+	
+	@FXML
+	private Button btInstallAdobeShockWave;
+
+	@FXML
+	private Button btInstallGoogleChrome;
+
+	@FXML
+	private Button btInstallClienteOCS;
+
+	@FXML
+	private Button btInstallFreePDF;
+
+	@FXML
+	private Button btInstallHpScanTwain;
 
 	// Botões para desinstalar
 	@FXML
@@ -46,6 +58,21 @@ public class MainViewController {
 
 	@FXML
 	private Button btUninstallAtualizacaoAdobeReader;
+	
+	@FXML
+	private Button btUninstallAdobeShockWave;
+
+	@FXML
+	private Button btUninstallGoogleChrome;
+
+	@FXML
+	private Button btUninstallClienteOCS;
+
+	@FXML
+	private Button btUninstallFreePDF;
+
+	@FXML
+	private Button btUninstallHpScanTwain;
 
 	// Botões para atualizar o programa
 	@FXML
@@ -62,6 +89,21 @@ public class MainViewController {
 
 	@FXML
 	private Button btUpdateAtualizacaoAdobeReader;
+	
+	@FXML
+	private Button btUpdateAdobeShockWave;
+
+	@FXML
+	private Button btUpdateGoogleChrome;
+
+	@FXML
+	private Button btUpdateClienteOCS;
+
+	@FXML
+	private Button btUpdateFreePDF;
+
+	@FXML
+	private Button btUpdateHpScanTwain;
 
 	/*
 	 * -----------------------------------------------------------------------------
