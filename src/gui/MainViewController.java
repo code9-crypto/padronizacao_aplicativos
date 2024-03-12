@@ -220,7 +220,7 @@ public class MainViewController {
 		String folderName = "Adobe";
 		try {
 			Runtime.getRuntime().exec(
-					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\adobe_reader\\adobe_reader_padrao_atualizado\\atualizacao\\uninstall.bat");
+					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\adobe_reader\\adobe_reader_padrao_atualizado\\uninstall.bat");
 		} catch (IOException e) {
 			boolean resultProgram = SearcherVerify.verifyPrograms(folderName);
 			boolean resultProgram86 = SearcherVerify.verifyPrograms86(folderName);
@@ -300,8 +300,8 @@ public class MainViewController {
 				Alerts.showAlert("Sucesso na atualização", null, "Arquivo atualizado com sucesso",
 						AlertType.INFORMATION);
 			} catch (IOException e) {
-				Alerts.showAlert("Erro na atualização", null,
-						"Houve um erro na atualização: " + e.getMessage(), AlertType.ERROR);
+				Alerts.showAlert("Erro na atualização", null, "Houve um erro na atualização: " + e.getMessage(),
+						AlertType.ERROR);
 			}
 		}
 
@@ -388,7 +388,7 @@ public class MainViewController {
 		for (File remoteFileServer : remoteFilesServer) {
 			remoteFileServerUpdated = remoteFileServer.getName();
 		}
-		
+
 		// Deletando o arquivo local e copiando o mais atual do repositório para local
 		try {
 			Runtime.getRuntime().exec(
@@ -396,48 +396,128 @@ public class MainViewController {
 							+ fileName);
 			Runtime.getRuntime().exec(
 					"cmd.exe /c copy /Y \\\\dados\\seplan\\detic_coengi_seserc__softwares\\plugins_e_complementos\\adobe_flashplayer\\adobe_flashplayer_plugin-v32.0.0."
-							+ String.valueOf(maior) + " C:\\apps_para_padronizacao_V3\\adobe_flashplayer\\adobe_flashplayer_plugin_padrao_atualizado");
+							+ String.valueOf(maior)
+							+ " C:\\apps_para_padronizacao_V3\\adobe_flashplayer\\adobe_flashplayer_plugin_padrao_atualizado");
 			Alerts.showAlert("Sucesso na atualização", null, "Atualização realizada com sucesso",
 					AlertType.INFORMATION);
 		} catch (IOException e) {
-			Alerts.showAlert("Erro na atualização", null,
-					"Houve um erro na atualização: " + e.getMessage(), AlertType.ERROR);
+			Alerts.showAlert("Erro na atualização", null, "Houve um erro na atualização: " + e.getMessage(),
+					AlertType.ERROR);
 		}
 	}
-	
-	public void onBtUpdateAdobeReader(){
-		//Pegando o arquivo da pasta local
+
+	public void onBtUpdateAdobeReader() {
+		// Pegando o arquivo da pasta local
 		String strLocalPath = "C:\\apps_para_padronizacao_V3\\adobe_reader\\adobe_reader_dc_padrao_atualizado";
 		File folderLocal = new File(strLocalPath);
 		File[] filesLocal = folderLocal.listFiles(File::isFile);
 		String fileName = "";
-		for( File fileLocal : filesLocal ) {
+		for (File fileLocal : filesLocal) {
 			int indBat = fileLocal.getName().lastIndexOf("bat");
-			if( indBat != 10 ) {
+			if (indBat != 10) {
 				fileName = fileLocal.getName();
 			}
 		}
-		
-		//Pegando o arquivo da pasta remota
+
+		// Pegando o arquivo da pasta remota
 		String strRemotePath = "\\\\dados\\seplan\\detic_coengi_seserc__softwares\\escritorio\\adobe_reader\\adobe_reader_dc\\adobe_reader_dc-v19.010";
 		File folderRemote = new File(strRemotePath);
 		File[] filesRemote = folderRemote.listFiles(File::isFile);
 		String remoteFileName = "";
-		for( File fileRemote : filesRemote ) {
+		for (File fileRemote : filesRemote) {
 			remoteFileName = fileRemote.getName();
 		}
-		
-		//Verificando se são iguais, caso seja, não precisa atualizar, caso não, será atualizado
-		if( fileName.equals(remoteFileName) ) {
+
+		// Verificando se são iguais, caso seja, não precisa atualizar, caso não, será
+		// atualizado
+		if (fileName.equals(remoteFileName)) {
 			Alerts.showAlert("Informação", null, "Este arquivo já está atualizado", AlertType.WARNING);
-		}else {
+		} else {
 			try {
-				Runtime.getRuntime().exec("cmd.exe /c del C:\\apps_para_padronizacao_V3\\adobe_reader\\adobe_reader_dc_padrao_atualizado\\"+fileName);
-				Runtime.getRuntime().exec("cmd.exe /c /Y copy \\\\dados\\seplan\\detic_coengi_seserc__softwares\\escritorio\\adobe_reader\\adobe_reader_dc\\adobe_reader_dc-v19.010\\"+remoteFileName + 
-						" C:\\apps_para_padronizacao_V3\\adobe_reader\\adobe_reader_dc_padrao_atualizado\\");
-			}catch(IOException e) {
-				Alerts.showAlert("Erro na atualização", null,
-						"Houve um erro na atualização: " + e.getMessage(), AlertType.ERROR);
+				Runtime.getRuntime().exec(
+						"cmd.exe /c del C:\\apps_para_padronizacao_V3\\adobe_reader\\adobe_reader_dc_padrao_atualizado\\"
+								+ fileName);
+				Runtime.getRuntime().exec(
+						"cmd.exe /c /Y copy \\\\dados\\seplan\\detic_coengi_seserc__softwares\\escritorio\\adobe_reader\\adobe_reader_dc\\adobe_reader_dc-v19.010\\"
+								+ remoteFileName
+								+ " C:\\apps_para_padronizacao_V3\\adobe_reader\\adobe_reader_dc_padrao_atualizado\\");
+			} catch (IOException e) {
+				Alerts.showAlert("Erro na atualização", null, "Houve um erro na atualização: " + e.getMessage(),
+						AlertType.ERROR);
+			}
+		}
+	}
+
+	public void onBtUpdateAtualizacaoAdobeReader() {
+		// Pegando a versão e nome do arquivo da pasta local
+		String strLocalPath = "C:\\apps_para_padronizacao_V3\\adobe_reader\\adobe_reader_padrao_atualizado";
+		File folderLocal = new File(strLocalPath);
+		File[] filesLocal = folderLocal.listFiles(File::isFile);
+		String fileName = "";
+		int versaoLocal = 0;
+		int indPri = 0;
+		int indSec = 0;
+		for (File fileLocal : filesLocal) {
+			int indBat = fileLocal.getName().lastIndexOf("bat");
+			if (indBat != 10) {
+				fileName = fileLocal.getName();
+				indPri = fileName.indexOf("r") + 1;
+				indSec = fileName.indexOf("_");
+				versaoLocal = Integer.parseInt(fileName.substring(indPri, indSec));
+			}
+		}
+
+		// Pegando a versão mais atualizada da pasta do reposótorio
+		String strRemoteFolder = "\\\\dados\\seplan\\detic_coengi_seserc__softwares\\escritorio\\adobe_reader";
+		File remoteFolder = new File(strRemoteFolder);
+		File[] remoteFolders = remoteFolder.listFiles(File::isDirectory);
+		int indFolSer = 0;
+		double indFolSerVer = 0.0;
+		double maiorVersao = 0.0;
+		for (File remote : remoteFolders) {
+			indFolSer = remote.getName().indexOf("-");
+			if (indFolSer == 12) {
+				indFolSerVer = Double.parseDouble(remote.getName().substring(indFolSer + 2));
+			}
+
+			if (indFolSerVer > maiorVersao) {
+				maiorVersao = indFolSerVer;
+			}
+		}
+
+		// Pegando a versão e nome mais atualizado do arquivo na pasta do repositório
+		String strRemotePath = "\\\\dados\\seplan\\detic_coengi_seserc__softwares\\escritorio\\adobe_reader\\adobe_reader-v"
+				+ maiorVersao;
+		File folderRemote = new File(strRemotePath);
+		File[] filesRemote = folderRemote.listFiles(File::isFile);
+		String fileServerName = "";
+		int versaoServer = 0;
+		int indPriSer = 0;
+		int indSecSer = 0;
+		for (File fileServer : filesRemote) {
+			int indBat = fileServer.getName().lastIndexOf("bat");
+			if (indBat != 10) {
+				fileServerName = fileServer.getName();
+				indPriSer = fileName.indexOf("r") + 1;
+				indSecSer = fileName.indexOf("_");
+				versaoServer = Integer.parseInt(fileServerName.substring(indPriSer, indSecSer));
+			}
+		}
+
+		if (versaoLocal == versaoServer) {
+			Alerts.showAlert("Informação", null, "Este arquivo já está atualizado", AlertType.WARNING);
+		} else {
+			try {
+				Runtime.getRuntime().exec(
+						"cmd.exe /c del C:\\apps_para_padronizacao_V3\\adobe_reader\\adobe_reader_padrao_atualizado"
+								+ fileName);
+				Runtime.getRuntime().exec(
+						"cmd.exe /c /Y copy \\\\dados\\seplan\\detic_coengi_seserc__softwares\\escritorio\\adobe_reader\\adobe_reader-v"+maiorVersao
+								+ fileServerName
+								+ " C:\\apps_para_padronizacao_V3\\adobe_reader\\adobe_reader_padrao_atualizado\\");
+			} catch (IOException e) {
+				Alerts.showAlert("Erro na atualização", null, "Houve um erro na atualização: " + e.getMessage(),
+						AlertType.ERROR);
 			}
 		}
 	}

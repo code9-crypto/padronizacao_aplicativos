@@ -107,7 +107,7 @@
                      </HBox.margin>
                   </Button>
                   <Button fx:id="btUninstallAtualizacaoAdobeReader" mnemonicParsing="false" onAction="#onBtUninstallAtualizacaoAdobeReader" text="Desinstalar" />
-                  <Button fx:id="btUpdateAtualizacaoAdobeReader" mnemonicParsing="false" text="Atualizar" />
+                  <Button fx:id="btUpdateAtualizacaoAdobeReader" mnemonicParsing="false" onAction="#onBtUpdateAtualizacaoAdobeReader" text="Atualizar" />
                </children>
             </HBox>
          </children>
