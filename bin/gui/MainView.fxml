@@ -142,57 +142,57 @@
             </Label>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
                <children>
-                  <Button mnemonicParsing="false" text="Instalar">
+                  <Button fx:id="btInstallAdobeShockWave" mnemonicParsing="false" onAction="#onBtInstallAdobeShockWaveAction" text="Instalar">
                      <HBox.margin>
                         <Insets left="8.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" text="Desinstalar" />
-                  <Button mnemonicParsing="false" text="Atualizar" />
+                  <Button fx:id="btUninstallAdobeShockWave" mnemonicParsing="false" onAction="#onBtUninstallAdobeShockWavePlayer" text="Desinstalar" />
+                  <Button fx:id="btUpdateAdobeShockWave" mnemonicParsing="false" onAction="#onBtUpdateAdobeShockWavePlayer" text="Atualizar" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
                <children>
-                  <Button mnemonicParsing="false" text="Instalar">
+                  <Button fx:id="btInstallGoogleChrome" mnemonicParsing="false" onAction="#onBtInstallGoogleChromeAction" text="Instalar">
                      <HBox.margin>
                         <Insets left="8.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" text="Desinstalar" />
-                  <Button mnemonicParsing="false" text="Atualizar" />
+                  <Button fx:id="btUninstallGoogleChrome" mnemonicParsing="false" onAction="#onBtUninstallGoogleChrome" text="Desinstalar" />
+                  <Button fx:id="btUpdateGoogleChrome" mnemonicParsing="false" onAction="#onBtUpdateGoogleChrome" text="Atualizar" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="1" GridPane.rowIndex="7">
                <children>
-                  <Button mnemonicParsing="false" text="Instalar">
+                  <Button fx:id="btInstallClienteOCS" mnemonicParsing="false" onAction="#onBtInstallClienteOCSAction" text="Instalar">
                      <HBox.margin>
                         <Insets left="8.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" text="Desinstalar" />
-                  <Button mnemonicParsing="false" text="Atualizar" />
+                  <Button fx:id="btUninstallClienteOCS" mnemonicParsing="false" onAction="#onBtUninstallClienteOCS" text="Desinstalar" />
+                  <Button fx:id="btUpdateClienteOCS" mnemonicParsing="false" text="Atualizar" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
                <children>
-                  <Button mnemonicParsing="false" text="Instalar">
+                  <Button fx:id="btInstallFreePDF" mnemonicParsing="false" onAction="#onBtInstallFreePDFAction" text="Instalar">
                      <HBox.margin>
                         <Insets left="8.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" text="Desinstalar" />
-                  <Button mnemonicParsing="false" text="Atualizar" />
+                  <Button fx:id="btUninstallFreePDF" mnemonicParsing="false" onAction="#onBtUninstallFreePDF" text="Desinstalar" />
+                  <Button fx:id="btUpdateFreePDF" mnemonicParsing="false" text="Atualizar" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
                <children>
-                  <Button mnemonicParsing="false" text="Instalar">
+                  <Button fx:id="btInstallHpScanTwain" mnemonicParsing="false" onAction="#onBtInstallHpScanTwainAction" text="Instalar">
                      <HBox.margin>
                         <Insets left="8.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" text="Desinstalar" />
-                  <Button mnemonicParsing="false" text="Atualizar" />
+                  <Button fx:id="btUninstallHpScanTwain" mnemonicParsing="false" onAction="#onBtUninstallHPScanTwain" text="Desinstalar" />
+                  <Button fx:id="btUpdateHpScanTwain" mnemonicParsing="false" text="Atualizar" />
                </children>
             </HBox>
          </children>

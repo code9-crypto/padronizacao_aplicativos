@@ -2,6 +2,7 @@ package gui;
 
 import java.io.File;
 import java.io.IOException;
+import java.rmi.server.UnicastRemoteObject;
 
 import gui.util.Alerts;
 import gui.util.FolderOrFileFinder;
@@ -27,7 +28,7 @@ public class MainViewController {
 
 	@FXML
 	private Button btInstallAtualizacaoAdobeReader;
-	
+
 	@FXML
 	private Button btInstallAdobeShockWave;
 
@@ -58,7 +59,7 @@ public class MainViewController {
 
 	@FXML
 	private Button btUninstallAtualizacaoAdobeReader;
-	
+
 	@FXML
 	private Button btUninstallAdobeShockWave;
 
@@ -89,7 +90,7 @@ public class MainViewController {
 
 	@FXML
 	private Button btUpdateAtualizacaoAdobeReader;
-	
+
 	@FXML
 	private Button btUpdateAdobeShockWave;
 
@@ -198,6 +199,91 @@ public class MainViewController {
 		}
 	}
 
+	@FXML
+	private void onBtInstallAdobeShockWaveAction() {
+		// Iniciando com um valor padrão do caminho
+		String strPath = "C:\\apps_para_padronizacao_V3\\adobe_shockwave";
+		String correctPath = "adobe_shockwave_player_padrao_atualizado";
+		String folderName = FolderOrFileFinder.searchFolder(strPath, correctPath);
+		String fileName = FolderOrFileFinder.searchFile(strPath, folderName);
+
+		try {
+			// Este comando faz o acesso ao cmd que por sua vez inicia o instalador
+			Runtime.getRuntime().exec(
+					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\adobe_shockwave\\" + folderName + "\\" + fileName);
+		} catch (IOException e) {
+			Alerts.showAlert("Criação de arquivo", null, "Houve um problema: " + e.getMessage(), AlertType.ERROR);
+		}
+	}
+
+	@FXML
+	private void onBtInstallGoogleChromeAction() {
+		// Iniciando com um valor padrão do caminho
+		String strPath = "C:\\apps_para_padronizacao_V3\\chrome";
+		String correctPath = "google_chrome_padrao_atualizado";
+		String folderName = FolderOrFileFinder.searchFolder(strPath, correctPath);
+		String fileName = FolderOrFileFinder.searchFile(strPath, folderName);
+
+		try {
+			// Este comando faz o acesso ao cmd que por sua vez inicia o instalador
+			Runtime.getRuntime()
+					.exec("cmd.exe /c start C:\\apps_para_padronizacao_V3\\chrome\\" + folderName + "\\" + fileName);
+		} catch (IOException e) {
+			Alerts.showAlert("Criação de arquivo", null, "Houve um problema: " + e.getMessage(), AlertType.ERROR);
+		}
+	}
+
+	@FXML
+	private void onBtInstallClienteOCSAction() {
+		// Iniciando com um valor padrão do caminho
+		String strPath = "C:\\apps_para_padronizacao_V3\\cliente_ocs";
+		String correctPath = "cliente_ocs_padrao_atualizado";
+		String folderName = FolderOrFileFinder.searchFolder(strPath, correctPath);
+		String fileName = FolderOrFileFinder.searchFile(strPath, folderName);
+
+		try {
+			// Este comando faz o acesso ao cmd que por sua vez inicia o instalador
+			Runtime.getRuntime().exec(
+					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\cliente_ocs\\" + folderName + "\\" + fileName);
+		} catch (IOException e) {
+			Alerts.showAlert("Criação de arquivo", null, "Houve um problema: " + e.getMessage(), AlertType.ERROR);
+		}
+	}
+
+	@FXML
+	private void onBtInstallFreePDFAction() {
+		// Iniciando com um valor padrão do caminho
+		String strPath = "C:\\apps_para_padronizacao_V3\\freepdf";
+		String correctPath = "freepdf_padrao_atualizado";
+		String folderName = FolderOrFileFinder.searchFolder(strPath, correctPath);
+		String fileName = FolderOrFileFinder.searchFile(strPath, folderName);
+
+		try {
+			// Este comando faz o acesso ao cmd que por sua vez inicia o instalador
+			Runtime.getRuntime()
+					.exec("cmd.exe /c start C:\\apps_para_padronizacao_V3\\freepdf\\" + folderName + "\\" + fileName);
+		} catch (IOException e) {
+			Alerts.showAlert("Criação de arquivo", null, "Houve um problema: " + e.getMessage(), AlertType.ERROR);
+		}
+	}
+
+	@FXML
+	private void onBtInstallHpScanTwainAction() {
+		// Iniciando com um valor padrão do caminho
+		String strPath = "C:\\apps_para_padronizacao_V3\\hp_scan_twain";
+		String correctPath = "hp_scan_twain_padrao_atualizado";
+		String folderName = FolderOrFileFinder.searchFolder(strPath, correctPath);
+		String fileName = FolderOrFileFinder.searchFile(strPath, folderName);
+
+		try {
+			// Este comando faz o acesso ao cmd que por sua vez inicia o instalador
+			Runtime.getRuntime().exec(
+					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\hp_scan_twain\\" + folderName + "\\" + fileName);
+		} catch (IOException e) {
+			Alerts.showAlert("Criação de arquivo", null, "Houve um problema: " + e.getMessage(), AlertType.ERROR);
+		}
+	}
+
 	// MÉTODOS QUE FARÃO A DESINSTALAÇÃO DOS PROGRAMAS
 	public void onBtUninstall7zip() {
 		String folderName = "7-Zip";
@@ -272,6 +358,56 @@ public class MainViewController {
 				Alerts.showAlert("Erro na desinstalação", null, "Este programa não está instalado", AlertType.ERROR);
 			}
 		}
+	}
+
+	public void onBtUninstallAdobeShockWavePlayer() {
+		try {
+			Runtime.getRuntime().exec(
+					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\adobe_shockwave\\adobe_shockwave_player_padrao_atualizado\\uninstall.bat");
+		} catch (IOException e) {
+			System.out.println("Programa não encontrado");
+		}
+
+	}
+
+	public void onBtUninstallGoogleChrome() {
+		try {
+			Runtime.getRuntime().exec(
+					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\chrome\\google_chrome_padrao_atualizado\\uninstall.bat");
+		} catch (IOException e) {
+			System.out.println("Programa não encontrado");
+		}
+
+	}
+
+	public void onBtUninstallClienteOCS() {
+		try {
+			Runtime.getRuntime().exec(
+					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\cliente_ocs\\cliente_ocs_padrao_atualizado\\uninstall.bat");
+		} catch (IOException e) {
+			System.out.println("Programa não encontrado");
+		}
+
+	}
+
+	public void onBtUninstallFreePDF() {
+		try {
+			Runtime.getRuntime().exec(
+					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\freepdf\\freepdf_padrao_atualizado\\uninstall.bat");
+		} catch (IOException e) {
+			System.out.println("Programa não encontrado");
+		}
+
+	}
+
+	public void onBtUninstallHPScanTwain() {
+		try {
+			Runtime.getRuntime().exec(
+					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\hp_scan_twain\\hp_scan_twain_padrao_atualizado\\uninstall.bat");
+		} catch (IOException e) {
+			System.out.println("Programa não encontrado");
+		}
+
 	}
 
 	// MÉTODOS QUE FARÁ A ATUALIZAÇÃO DO APLICATIVO
@@ -438,7 +574,7 @@ public class MainViewController {
 							+ fileName);
 			Runtime.getRuntime().exec(
 					"cmd.exe /c copy /Y \\\\dados\\seplan\\detic_coengi_seserc__softwares\\plugins_e_complementos\\adobe_flashplayer\\adobe_flashplayer_plugin-v32.0.0."
-							+ String.valueOf(maior)
+							+ String.valueOf(maior) + "\\" + remoteFileServerUpdated
 							+ " C:\\apps_para_padronizacao_V3\\adobe_flashplayer\\adobe_flashplayer_plugin_padrao_atualizado");
 			Alerts.showAlert("Sucesso na atualização", null, "Atualização realizada com sucesso",
 					AlertType.INFORMATION);
@@ -480,9 +616,11 @@ public class MainViewController {
 						"cmd.exe /c del C:\\apps_para_padronizacao_V3\\adobe_reader\\adobe_reader_dc_padrao_atualizado\\"
 								+ fileName);
 				Runtime.getRuntime().exec(
-						"cmd.exe /c /Y copy \\\\dados\\seplan\\detic_coengi_seserc__softwares\\escritorio\\adobe_reader\\adobe_reader_dc\\adobe_reader_dc-v19.010\\"
+						"cmd.exe /c copy /Y \\\\dados\\seplan\\detic_coengi_seserc__softwares\\escritorio\\adobe_reader\\adobe_reader_dc\\adobe_reader_dc-v19.010\\"
 								+ remoteFileName
-								+ " C:\\apps_para_padronizacao_V3\\adobe_reader\\adobe_reader_dc_padrao_atualizado\\");
+								+ " C:\\apps_para_padronizacao_V3\\adobe_reader\\adobe_reader_dc_padrao_atualizado");
+				Alerts.showAlert("Sucesso na atualização", null, "Atualização realizada com sucesso",
+						AlertType.INFORMATION);
 			} catch (IOException e) {
 				Alerts.showAlert("Erro na atualização", null, "Houve um erro na atualização: " + e.getMessage(),
 						AlertType.ERROR);
@@ -551,16 +689,146 @@ public class MainViewController {
 		} else {
 			try {
 				Runtime.getRuntime().exec(
-						"cmd.exe /c del C:\\apps_para_padronizacao_V3\\adobe_reader\\adobe_reader_padrao_atualizado"
+						"cmd.exe /c del C:\\apps_para_padronizacao_V3\\adobe_reader\\adobe_reader_padrao_atualizado\\"
 								+ fileName);
 				Runtime.getRuntime().exec(
-						"cmd.exe /c /Y copy \\\\dados\\seplan\\detic_coengi_seserc__softwares\\escritorio\\adobe_reader\\adobe_reader-v"+maiorVersao
-								+ fileServerName
-								+ " C:\\apps_para_padronizacao_V3\\adobe_reader\\adobe_reader_padrao_atualizado\\");
+						"cmd.exe /c copy /Y \\\\dados\\seplan\\detic_coengi_seserc__softwares\\escritorio\\adobe_reader\\adobe_reader-v"
+								+ maiorVersao + fileServerName
+								+ " C:\\apps_para_padronizacao_V3\\adobe_reader\\adobe_reader_padrao_atualizado");
+				Alerts.showAlert("Sucesso na atualização", null, "Atualização realizada com sucesso",
+						AlertType.INFORMATION);
 			} catch (IOException e) {
 				Alerts.showAlert("Erro na atualização", null, "Houve um erro na atualização: " + e.getMessage(),
 						AlertType.ERROR);
 			}
 		}
+	}
+
+	public void onBtUpdateAdobeShockWavePlayer() {
+		// Pegando o arquivo da pasta local
+		String strLocalPath = "C:\\apps_para_padronizacao_V3\\adobe_shockwave\\adobe_shockwave_player_padrao_atualizado";
+		File folderLocal = new File(strLocalPath);
+		File[] filesLocal = folderLocal.listFiles(File::isFile);
+		String fileLocalName = "";
+		for (File fileLocal : filesLocal) {
+			int indBat = fileLocal.getName().lastIndexOf("bat");
+			if (indBat != 10) {
+				fileLocalName = fileLocal.getName();
+			}
+		}
+
+		// Encontrando o nome da pasta remota(servidor)
+		String strRemPath = "\\\\dados\\seplan\\detic_coengi_seserc__softwares\\plugins_e_complementos\\adobe_shockwave";
+		File remotePath = new File(strRemPath);
+		File[] remoteFolders = remotePath.listFiles(File::isDirectory);
+		String remoteFolder = "";
+		for (File remoteFolderServer : remoteFolders) {
+			if (remoteFolderServer.getName().indexOf("adobe_shockwave_player") == -1) {
+				remoteFolder = null;
+			} else {
+				remoteFolder = remoteFolderServer.getName();
+			}
+		}
+
+		// Pegando o arquivo da pasta remota
+		String strRemotePath = "\\\\dados\\seplan\\detic_coengi_seserc__softwares\\plugins_e_complementos\\adobe_shockwave\\"
+				+ remoteFolder;
+		File folderRemote = new File(strRemotePath);
+		File[] filesRemote = folderRemote.listFiles(File::isFile);
+		String remoteFileName = "";
+		for (File fileRemote : filesRemote) {
+			remoteFileName = fileRemote.getName();
+		}
+
+		// Verificando se o arquivo local é igual ao arquivo remoto
+		// Caso seja, então arquivo já atualizado, caso não, será atualizado pelo do
+		// remoto
+		if (fileLocalName.equals(remoteFileName)) {
+			Alerts.showAlert("Informação", null, "Este arquivo já está atualizado", AlertType.WARNING);
+		} else {
+			try {
+				Runtime.getRuntime().exec(
+						"cmd.exe /c del C:\\apps_para_padronizacao_V3\\adobe_shockwave\\adobe_shockwave_player_padrao_atualizado\\"
+								+ fileLocalName);
+				Runtime.getRuntime().exec(
+						"cmd.exe /c copy /Y \\\\dados\\seplan\\detic_coengi_seserc__softwares\\plugins_e_complementos\\adobe_shockwave\\"
+								+ remoteFolder + "\\" + remoteFileName
+								+ " C:\\apps_para_padronizacao_V3\\adobe_shockwave\\adobe_shockwave_player_padrao_atualizado");
+				Alerts.showAlert("Sucesso na atualização", null, "Atualização realizada com sucesso",
+						AlertType.INFORMATION);
+			} catch (IOException e) {
+				Alerts.showAlert("Erro na atualização", null, "Houve um erro na atualização: " + e.getMessage(),
+						AlertType.ERROR);
+			}
+		}
+	}
+
+	public void onBtUpdateGoogleChrome() {
+		// Pegando o arquivo da pasta local
+		String strLocalPath = "C:\\apps_para_padronizacao_V3\\chrome\\google_chrome_padrao_atualizado";
+		File folderLocal = new File(strLocalPath);
+		File[] filesLocal = folderLocal.listFiles(File::isFile);
+		String fileLocalName = "";
+		for (File fileLocal : filesLocal) {
+			int indBat = fileLocal.getName().lastIndexOf("bat");
+			if (indBat != 10 && !fileLocal.getName().equals("remove-aviso.exe")) {
+				fileLocalName = fileLocal.getName();
+			}
+		}
+
+		// Encontrando o nome da pasta remota(servidor)
+		String strRemPath = "\\\\dados\\seplan\\detic_coengi_seserc__softwares\\navegadores\\google_chrome";
+		File remotePath = new File(strRemPath);
+		File[] remoteFolders = remotePath.listFiles(File::isDirectory);
+		String remoteFolder = "";
+		int maior = 0;
+		for (File remoteFolderServer : remoteFolders) {
+			int versao = Integer
+					.parseInt(remoteFolderServer.getName().substring(15, remoteFolderServer.getName().indexOf(".")));
+			int bits = Integer.parseInt(remoteFolderServer.getName().substring(
+					remoteFolderServer.getName().lastIndexOf("-") + 1, remoteFolderServer.getName().lastIndexOf("b")));
+			if (versao > maior && bits == 64) {
+				maior = versao;
+				remoteFolder = remoteFolderServer.getName();
+			}
+		}
+
+		// Pegando o arquivo da pasta remota
+		String strRemotePath = "\\\\dados\\seplan\\detic_coengi_seserc__softwares\\navegadores\\google_chrome\\"
+				+ remoteFolder;
+		File folderRemote = new File(strRemotePath);
+		File[] filesRemote = folderRemote.listFiles(File::isFile);
+		String remoteFileName = "";
+		for (File fileRemote : filesRemote) {
+			if (!fileRemote.getName().equals("remove-aviso.exe")) {
+				remoteFileName = fileRemote.getName();
+			}
+		}
+
+		// Verificando se o arquivo local é igual ao arquivo remoto
+		// Caso seja, então arquivo já atualizado, caso não, será atualizado pelo do
+		// remoto
+		if (fileLocalName.equals(remoteFileName)) {
+			Alerts.showAlert("Informação", null, "Este arquivo já está atualizado", AlertType.WARNING);
+		} else {
+			try {
+				Runtime.getRuntime().exec(
+						"cmd.exe /c del C:\\apps_para_padronizacao_V3\\chrome\\google_chrome_padrao_atualizado\\"
+								+ fileLocalName);
+				Runtime.getRuntime().exec(
+						"cmd.exe /c copy /Y \\\\dados\\seplan\\detic_coengi_seserc__softwares\\navegadores\\google_chrome\\"
+								+ remoteFolder + "\\" + remoteFileName
+								+ " C:\\apps_para_padronizacao_V3\\chrome\\google_chrome_padrao_atualizado");
+				Alerts.showAlert("Sucesso na atualização", null, "Atualização realizada com sucesso",
+						AlertType.INFORMATION);
+			} catch (IOException e) {
+				Alerts.showAlert("Erro na atualização", null, "Houve um erro na atualização: " + e.getMessage(),
+						AlertType.ERROR);
+			}
+		}
+	}
+	
+	public void onBtUpdateClienteOCS() {
+		
 	}
 }
