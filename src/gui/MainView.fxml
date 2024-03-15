@@ -170,7 +170,7 @@
                      </HBox.margin>
                   </Button>
                   <Button fx:id="btUninstallClienteOCS" mnemonicParsing="false" onAction="#onBtUninstallClienteOCS" text="Desinstalar" />
-                  <Button fx:id="btUpdateClienteOCS" mnemonicParsing="false" text="Atualizar" />
+                  <Button fx:id="btUpdateClienteOCS" mnemonicParsing="false" onAction="#onBtUpdateClienteOCS" text="Atualizar" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="1" GridPane.rowIndex="8">
@@ -181,7 +181,7 @@
                      </HBox.margin>
                   </Button>
                   <Button fx:id="btUninstallFreePDF" mnemonicParsing="false" onAction="#onBtUninstallFreePDF" text="Desinstalar" />
-                  <Button fx:id="btUpdateFreePDF" mnemonicParsing="false" text="Atualizar" />
+                  <Button fx:id="btUpdateFreePDF" mnemonicParsing="false" onAction="#onBtUpdateFreePDF" text="Atualizar" />
                </children>
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
@@ -192,7 +192,7 @@
                      </HBox.margin>
                   </Button>
                   <Button fx:id="btUninstallHpScanTwain" mnemonicParsing="false" onAction="#onBtUninstallHPScanTwain" text="Desinstalar" />
-                  <Button fx:id="btUpdateHpScanTwain" mnemonicParsing="false" text="Atualizar" />
+                  <Button fx:id="btUpdateHpScanTwain" mnemonicParsing="false" onAction="#onBtUpdateHPScanTwain" text="Atualizar" />
                </children>
             </HBox>
          </children>

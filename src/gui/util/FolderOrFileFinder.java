@@ -26,7 +26,7 @@ public class FolderOrFileFinder {
 		File[] files = restPath.listFiles(File::isFile);
 		String fileName = null;
 		for (File file : files) {
-			if( !file.getName().equals("uninstall.bat") && !file.getName().equals("remove-aviso.exe") ) {
+			if( !file.getName().equals("uninstall.bat") && !file.getName().equals("remove-aviso.exe") && !file.getName().equals("setup.exe") && !file.getName().equals("gs907w64.exe") && !file.getName().equals("gs907w32.exe")) {
 				fileName = file.getName();
 			}
 		}

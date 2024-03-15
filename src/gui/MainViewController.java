@@ -259,12 +259,30 @@ public class MainViewController {
 		String fileName = FolderOrFileFinder.searchFile(strPath, folderName);
 
 		try {
+			Runtime.getRuntime()
+					.exec("cmd.exe /c start C:\\apps_para_padronizacao_V3\\freepdf\\" + folderName + "\\gs907w64.exe");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		// Este código será fará um pequeno delay de 12 segundos, para depois executar a
+		// próxima instalação
+		try {
+			Thread.sleep(15000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
+		try {
 			// Este comando faz o acesso ao cmd que por sua vez inicia o instalador
 			Runtime.getRuntime()
 					.exec("cmd.exe /c start C:\\apps_para_padronizacao_V3\\freepdf\\" + folderName + "\\" + fileName);
 		} catch (IOException e) {
 			Alerts.showAlert("Criação de arquivo", null, "Houve um problema: " + e.getMessage(), AlertType.ERROR);
 		}
+
 	}
 
 	@FXML
@@ -776,7 +794,7 @@ public class MainViewController {
 			}
 		}
 
-		// Encontrando o nome da pasta remota(servidor)
+		// Encontrando o nome mais atualizado da pasta remota(servidor)
 		String strRemPath = "\\\\dados\\seplan\\detic_coengi_seserc__softwares\\navegadores\\google_chrome";
 		File remotePath = new File(strRemPath);
 		File[] remoteFolders = remotePath.listFiles(File::isDirectory);
@@ -812,8 +830,8 @@ public class MainViewController {
 			Alerts.showAlert("Informação", null, "Este arquivo já está atualizado", AlertType.WARNING);
 		} else {
 			try {
-				Runtime.getRuntime().exec(
-						"cmd.exe /c del C:\\apps_para_padronizacao_V3\\chrome\\google_chrome_padrao_atualizado\\"
+				Runtime.getRuntime()
+						.exec("cmd.exe /c del C:\\apps_para_padronizacao_V3\\chrome\\google_chrome_padrao_atualizado\\"
 								+ fileLocalName);
 				Runtime.getRuntime().exec(
 						"cmd.exe /c copy /Y \\\\dados\\seplan\\detic_coengi_seserc__softwares\\navegadores\\google_chrome\\"
@@ -827,8 +845,207 @@ public class MainViewController {
 			}
 		}
 	}
-	
+
 	public void onBtUpdateClienteOCS() {
-		
+		// Pegando o arquivo da pasta local
+		String strLocalPath = "C:\\apps_para_padronizacao_V3\\cliente_ocs\\cliente_ocs_padrao_atualizado";
+		File folderLocal = new File(strLocalPath);
+		File[] filesLocal = folderLocal.listFiles(File::isFile);
+		String fileLocalName = "";
+		for (File fileLocal : filesLocal) {
+			int indBat = fileLocal.getName().lastIndexOf("bat");
+			if (indBat != 10) {
+				fileLocalName = fileLocal.getName();
+			}
+		}
+
+		// Encontrando o nome mais atualizado da pasta remota(servidor)
+		String strRemPath = "\\\\dados\\seplan\\detic_coengi_seserc__softwares\\inventario\\cliente_ocs";
+		File remotePath = new File(strRemPath);
+		File[] remoteFolders = remotePath.listFiles(File::isDirectory);
+		String remoteFolder = "";
+		double maior = 0.0;
+		double indVersao = 0.0;
+		for (File remoteFolderServer : remoteFolders) {
+			// Recortando o nome da pasta para pegar apenas a versão para verificar depois
+			// qual é a mais atualizada
+			indVersao = Double.parseDouble(remoteFolderServer.getName().substring(
+					remoteFolderServer.getName().indexOf("v") + 1, remoteFolderServer.getName().indexOf("v") + 4));
+
+			if (indVersao > maior) {
+				maior = indVersao;
+				remoteFolder = remoteFolderServer.getName();
+			}
+		}
+
+		// Pegando o arquivo da pasta remota
+		String strRemotePath = "\\\\dados\\seplan\\detic_coengi_seserc__softwares\\inventario\\cliente_ocs\\"
+				+ remoteFolder;
+		File folderRemote = new File(strRemotePath);
+		File[] filesRemote = folderRemote.listFiles(File::isFile);
+		String remoteFileName = "";
+		for (File fileRemote : filesRemote) {
+			remoteFileName = fileRemote.getName();
+		}
+
+		// Verificando se o arquivo local é igual ao arquivo remoto
+		// Caso seja, então arquivo já atualizado, caso não, será atualizado pelo do
+		// remoto
+		if (fileLocalName.equals(remoteFileName)) {
+			Alerts.showAlert("Informação", null, "Este arquivo já está atualizado", AlertType.WARNING);
+		} else {
+			try {
+				Runtime.getRuntime().exec(
+						"cmd.exe /c del C:\\apps_para_padronizacao_V3\\cliente_ocs\\cliente_ocs_padrao_atualizado\\"
+								+ fileLocalName);
+				Runtime.getRuntime().exec(
+						"cmd.exe /c copy /Y \\\\dados\\seplan\\detic_coengi_seserc__softwares\\inventario\\cliente_ocs\\"
+								+ remoteFolder + "\\" + remoteFileName
+								+ " C:\\apps_para_padronizacao_V3\\cliente_ocs\\cliente_ocs_padrao_atualizado");
+				Alerts.showAlert("Sucesso na atualização", null, "Atualização realizada com sucesso",
+						AlertType.INFORMATION);
+			} catch (IOException e) {
+				Alerts.showAlert("Erro na atualização", null, "Houve um erro na atualização: " + e.getMessage(),
+						AlertType.ERROR);
+			}
+		}
+	}
+
+	public void onBtUpdateFreePDF() {
+		// Pegando o arquivo da pasta local
+		String strLocalPath = "C:\\apps_para_padronizacao_V3\\freepdf\\freepdf_padrao_atualizado";
+		File folderLocal = new File(strLocalPath);
+		File[] filesLocal = folderLocal.listFiles(File::isFile);
+		String fileLocalName = "";
+		for (File fileLocal : filesLocal) {
+			int indBat = fileLocal.getName().lastIndexOf("bat");
+			if (indBat != 10 && !fileLocal.getName().equals("uninstall.bat") && !fileLocal.getName().equals("setup.exe")
+					&& !fileLocal.getName().equals("gs907w64.exe") && !fileLocal.getName().equals("gs907w32.exe")) {
+				fileLocalName = fileLocal.getName();
+			}
+		}
+
+		// Encontrando o nome mais atualizado da pasta remota(servidor)
+		String strRemPath = "\\\\dados\\seplan\\detic_coengi_seserc__softwares\\escritorio\\freepdf";
+		File remotePath = new File(strRemPath);
+		File[] remoteFolders = remotePath.listFiles(File::isDirectory);
+		String remoteFolder = "";
+		double maior = 0.0;
+		double indVersao = 0.0;
+		for (File remoteFolderServer : remoteFolders) {
+			// Recortando o nome da pasta para pegar apenas a versão para verificar depois
+			// qual é a mais atualizada
+			indVersao = Double
+					.parseDouble(remoteFolderServer.getName().substring(remoteFolderServer.getName().indexOf("v") + 1));
+			if (indVersao > maior) {
+				maior = indVersao;
+				remoteFolder = remoteFolderServer.getName();
+			}
+		}
+
+		// Pegando o arquivo da pasta remota
+		String strRemotePath = "\\\\dados\\seplan\\detic_coengi_seserc__softwares\\escritorio\\freepdf\\"
+				+ remoteFolder;
+		File folderRemote = new File(strRemotePath);
+		File[] filesRemote = folderRemote.listFiles(File::isFile);
+		String remoteFileName = "";
+		for (File fileRemote : filesRemote) {
+			if (!fileRemote.getName().equals("setup.exe") && !fileRemote.getName().equals("gs907w64.exe")
+					&& !fileRemote.getName().equals("gs907w32.exe")) {
+				remoteFileName = fileRemote.getName();
+			}
+		}
+
+		// Verificando se o arquivo local é igual ao arquivo remoto
+		// Caso seja, então arquivo já atualizado, caso não, será atualizado pelo do
+		// remoto
+		if (fileLocalName.equals(remoteFileName)) {
+			Alerts.showAlert("Informação", null, "Este arquivo já está atualizado", AlertType.WARNING);
+		} else {
+			try {
+				Runtime.getRuntime()
+						.exec("cmd.exe /c del C:\\apps_para_padronizacao_V3\\freepdf\\freepdf_padrao_atualizado\\"
+								+ fileLocalName);
+				Runtime.getRuntime().exec(
+						"cmd.exe /c copy /Y \\\\dados\\seplan\\detic_coengi_seserc__softwares\\escritorio\\freepdf\\"
+								+ remoteFolder + "\\" + remoteFileName
+								+ " C:\\apps_para_padronizacao_V3\\freepdf\\freepdf_padrao_atualizado");
+				Alerts.showAlert("Sucesso na atualização", null, "Atualização realizada com sucesso",
+						AlertType.INFORMATION);
+			} catch (IOException e) {
+				Alerts.showAlert("Erro na atualização", null, "Houve um erro na atualização: " + e.getMessage(),
+						AlertType.ERROR);
+			}
+		}
+	}
+
+	public void onBtUpdateHPScanTwain() {
+		// Pegando o arquivo da pasta local
+		String strLocalPath = "C:\\apps_para_padronizacao_V3\\hp_scan_twain\\hp_scan_twain_padrao_atualizado";
+		File folderLocal = new File(strLocalPath);
+		File[] filesLocal = folderLocal.listFiles(File::isFile);
+		String fileLocalName = "";
+		for (File fileLocal : filesLocal) {
+			int indBat = fileLocal.getName().lastIndexOf("bat");
+			if (indBat != 10 && !fileLocal.getName().equals("uninstall.bat")) {
+				fileLocalName = fileLocal.getName();
+			}
+		}
+
+		// Encontrando o nome mais atualizado da pasta remota(servidor)
+		String strRemPath = "\\\\dados\\seplan\\detic_coengi_seserc__softwares\\impressao\\hp_scan_twain";
+		File remotePath = new File(strRemPath);
+		File[] remoteFolders = remotePath.listFiles(File::isDirectory);
+		String remoteFolder = "";
+		int priMaior = 0;
+		int secMaior = 0;
+		int terMaior = 0;
+		for (File remoteFolderServer : remoteFolders) {
+			// Recortando o nome da pasta para pegar apenas a versão para verificar depois
+			// qual é a mais atualizada
+			int priInd = Integer.parseInt(remoteFolderServer.getName().substring(
+					(remoteFolderServer.getName().indexOf("v") + 1), remoteFolderServer.getName().indexOf(".")));
+			int secInd = Integer.parseInt(remoteFolderServer.getName().substring(17, 18));
+			int terInd = Integer.parseInt(remoteFolderServer.getName().substring(19));
+			if (priInd > priMaior || secInd > secMaior || terInd > terMaior) {
+				priMaior = priInd;
+				secMaior = secInd;
+				terMaior = terInd;
+				remoteFolder = remoteFolderServer.getName();
+			}
+		}
+
+		// Pegando o arquivo da pasta remota
+		String strRemotePath = "\\\\dados\\seplan\\detic_coengi_seserc__softwares\\impressao\\hp_scan_twain\\"
+				+ remoteFolder;
+		File folderRemote = new File(strRemotePath);
+		File[] filesRemote = folderRemote.listFiles(File::isFile);
+		String remoteFileName = "";
+		for (File fileRemote : filesRemote) {
+			remoteFileName = fileRemote.getName();
+		}
+
+		// Verificando se o arquivo local é igual ao arquivo remoto
+		// Caso seja, então arquivo já atualizado, caso não, será atualizado pelo do
+		// remoto
+		if (fileLocalName.equals(remoteFileName)) {
+			Alerts.showAlert("Informação", null, "Este arquivo já está atualizado", AlertType.WARNING);
+		} else {
+			try {
+				Runtime.getRuntime()
+						.exec("cmd.exe /c del C:\\apps_para_padronizacao_V3\\hp_scan_twain\\hp_scan_twain_padrao_atualizado\\"
+								+ fileLocalName);
+				Runtime.getRuntime().exec(
+						"cmd.exe /c copy /Y \\\\dados\\seplan\\detic_coengi_seserc__softwares\\impressao\\hp_scan_twain\\"
+								+ remoteFolder + "\\" + remoteFileName
+								+ " C:\\apps_para_padronizacao_V3\\hp_scan_twain\\hp_scan_twain_padrao_atualizado");
+				Alerts.showAlert("Sucesso na atualização", null, "Atualização realizada com sucesso",
+						AlertType.INFORMATION);
+			} catch (IOException e) {
+				Alerts.showAlert("Erro na atualização", null, "Houve um erro na atualização: " + e.getMessage(),
+						AlertType.ERROR);
+			}
+		}
+
 	}
 }
