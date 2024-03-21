@@ -2,16 +2,84 @@ package gui;
 
 import java.io.File;
 import java.io.IOException;
-import java.rmi.server.UnicastRemoteObject;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import gui.util.Alerts;
 import gui.util.FolderOrFileFinder;
 import gui.util.SearcherVerify;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
-public class MainViewController {
+public class MainViewController implements Initializable{
+	
+	//Texto para formatação referente aos programas se estão instalados ou não
+	@FXML
+	private Label lblCheck7zip;
+	
+	@FXML
+	private Label lblCheckAdobePPAPI;
+	
+	@FXML
+	private Label lblCheckAdobePlugin;
+	
+	@FXML
+	private Label lblCheckAdobeReader;
+	
+	@FXML
+	private Label lblCheckAtualizacaoAdobeReader;
+	
+	@FXML
+	private Label lblCheckAdobeShockwave;
+	
+	@FXML
+	private Label lblCheckChrome;
+	
+	@FXML
+	private Label lblCheckOCS;
+	
+	@FXML
+	private Label lblCheckFreePDF;
+	
+	@FXML
+	private Label lblCheckHPScan;
+	
+	@FXML
+	private Label lblCheckIE;
+	
+	@FXML
+	private Label lblCheckJavaRuntime;
+	
+	@FXML
+	private Label lblCheckLibreOffice;
+	
+	@FXML
+	private Label lblCheckLojaApp;
+	
+	@FXML
+	private Label lblCheckMozilla;
+	
+	@FXML
+	private Label lblCheckPDF24;
+	
+	@FXML
+	private Label lblCheckSamsungEasyDocument;
+	
+	@FXML
+	private Label lblCheckScanBack;
+	
+	@FXML
+	private Label lblCheckSilverlight;
+	
+	@FXML
+	private Label lblCheckTrendAntivirus;
+	
+	@FXML
+	private Label lblCheckVNC;
 
 	// Botões para instalar
 	@FXML
@@ -44,6 +112,39 @@ public class MainViewController {
 	@FXML
 	private Button btInstallHpScanTwain;
 
+	@FXML
+	private Button btInstallInternetExplorer;
+
+	@FXML
+	private Button btInstallJavaRuntime;
+
+	@FXML
+	private Button btInstallLibreOffice;
+
+	@FXML
+	private Button btInstallLojaDeApp;
+
+	@FXML
+	private Button btInstallMozillaFireFox;
+	
+	@FXML
+	private Button btInstallPDF24Creator;
+
+	@FXML
+	private Button btInstallSamsungEasyDocumentCreator;
+
+	@FXML
+	private Button btInstallScanBack;
+
+	@FXML
+	private Button btInstallSilverlight;
+
+	@FXML
+	private Button btInstallTrendAntivirus;
+
+	@FXML
+	private Button btInstallUltraVNC;
+
 	// Botões para desinstalar
 	@FXML
 	private Button btUninstall7zip;
@@ -74,6 +175,40 @@ public class MainViewController {
 
 	@FXML
 	private Button btUninstallHpScanTwain;
+
+	@FXML
+	private Button btUninstallInternetExplorer;
+
+	@FXML
+	private Button btUninstallJavaRuntime;
+
+	@FXML
+	private Button btUninstallLibreOffice;
+
+	@FXML
+	private Button btUninstallLojaDeApp;
+
+	@FXML
+	private Button btUninstallMozillaFireFox;
+	
+	@FXML
+	private Button btUninstallPDF24Creator;
+
+	@FXML
+	private Button btUninstallSamsungEasyDocumentCreator;
+
+	@FXML
+	private Button btUninstallScanBack;
+
+	@FXML
+	private Button btUninstallSilverlight;
+
+	@FXML
+	private Button btUninstallTrendAntivirus;
+
+	@FXML
+	private Button btUninstallUltraVNC;
+
 
 	// Botões para atualizar o programa
 	@FXML
@@ -106,6 +241,39 @@ public class MainViewController {
 	@FXML
 	private Button btUpdateHpScanTwain;
 
+	@FXML
+	private Button btUpdateInternetExplorer;
+
+	@FXML
+	private Button btUpdateJavaRuntime;
+
+	@FXML
+	private Button btUpdateLibreOffice;
+
+	@FXML
+	private Button btUpdateLojaDeApp;
+
+	@FXML
+	private Button btUpdateMozillaFireFox;
+	
+	@FXML
+	private Button btUpdatePDF24Creator;
+
+	@FXML
+	private Button btUpdateSamsungEasyDocumentCreator;
+
+	@FXML
+	private Button btUpdateScanBack;
+
+	@FXML
+	private Button btUpdateSilverlight;
+
+	@FXML
+	private Button btUpdateTrendAntivirus;
+
+	@FXML
+	private Button btUpdateUltraVNC;
+
 	/*
 	 * -----------------------------------------------------------------------------
 	 * ------------------------------------------
@@ -125,10 +293,12 @@ public class MainViewController {
 			// Este comando faz o acesso ao cmd que por sua vez inicia o instalador
 			Runtime.getRuntime()
 					.exec("cmd.exe /c start C:\\apps_para_padronizacao_V3\\7zip\\" + folderName + "\\" + fileName);
+			lblCheck7zip.setStyle("-fx-text-fill: green");
+			lblCheck7zip.setText("OK");
 		} catch (IOException e) {
 			Alerts.showAlert("Criação de arquivo", null, "Houve um problema: " + e.getMessage(), AlertType.ERROR);
 		}
-
+		
 	}
 
 	@FXML
@@ -142,6 +312,8 @@ public class MainViewController {
 			// Este comando faz o acesso ao cmd que por sua vez inicia o instalador
 			Runtime.getRuntime().exec("cmd.exe /c start C:\\apps_para_padronizacao_V3\\adobe_flashplayer\\" + folderName
 					+ "\\" + fileName);
+			lblCheckAdobePPAPI.setStyle("-fx-text-fill: green");
+			lblCheckAdobePPAPI.setText("OK");
 		} catch (IOException e) {
 			Alerts.showAlert("Criação de arquivo", null, "Houve um problema: " + e.getMessage(), AlertType.ERROR);
 		}
@@ -302,6 +474,121 @@ public class MainViewController {
 		}
 	}
 
+	@FXML
+	private void onBtInstallInternetExplorerAction() {
+		// Iniciando com um valor padrão do caminho
+		String strPath = "C:\\apps_para_padronizacao_V3\\internet_explorer";
+		String correctPath = "internet_explorer_padrao_atualizado";
+		String folderName = FolderOrFileFinder.searchFolder(strPath, correctPath);
+		String fileName = FolderOrFileFinder.searchFile(strPath, folderName);
+
+		try {
+			// Este comando faz o acesso ao cmd que por sua vez inicia o instalador
+			Runtime.getRuntime().exec("cmd.exe /c start C:\\apps_para_padronizacao_V3\\internet_explorer\\" + folderName
+					+ "\\" + fileName);
+		} catch (IOException e) {
+			Alerts.showAlert("Criação de arquivo", null, "Houve um problema: " + e.getMessage(), AlertType.ERROR);
+		}
+	}
+
+	@FXML
+	private void onBtInstallJavaRuntimeAction() {
+		// Iniciando com um valor padrão do caminho
+		String strPath = "C:\\apps_para_padronizacao_V3\\java_runtime";
+		String correctPath = "java_runtime_padrao_atualizado";
+		String folderName = FolderOrFileFinder.searchFolder(strPath, correctPath);
+		String fileName = FolderOrFileFinder.searchFile(strPath, folderName);
+
+		try {
+			// Este comando faz o acesso ao cmd que por sua vez inicia o instalador
+			Runtime.getRuntime().exec(
+					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\java_runtime\\" + folderName + "\\" + fileName);
+		} catch (IOException e) {
+			Alerts.showAlert("Criação de arquivo", null, "Houve um problema: " + e.getMessage(), AlertType.ERROR);
+		}
+	}
+
+	@FXML
+	private void onBtInstallLibreOfficeAction() {
+		// Iniciando com um valor padrão do caminho
+		String strPath = "C:\\apps_para_padronizacao_V3\\libre_office";
+		String correctPath = "libre_office_padrao_atualizado";
+		String folderName = FolderOrFileFinder.searchFolder(strPath, correctPath);
+		String fileName = FolderOrFileFinder.searchFile(strPath, folderName);
+
+		try {
+			// Este comando faz o acesso ao cmd que por sua vez inicia o instalador
+			Runtime.getRuntime().exec(
+					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\libre_office\\" + folderName + "\\" + fileName);
+		} catch (IOException e) {
+			Alerts.showAlert("Criação de arquivo", null, "Houve um problema: " + e.getMessage(), AlertType.ERROR);
+		}
+	}
+
+	@FXML
+	private void onBtInstallLojaDeAppsAction() {
+		// Iniciando com um valor padrão do caminho
+		String strPath = "C:\\apps_para_padronizacao_V3\\loja_de_app";
+		String correctPath = "loja_de_apps_padrao_atualizado";
+		String folderName = FolderOrFileFinder.searchFolder(strPath, correctPath);
+		String fileName = FolderOrFileFinder.searchFile(strPath, folderName);
+
+		try {
+			// Este comando faz o acesso ao cmd que por sua vez inicia o instalador
+			Runtime.getRuntime().exec(
+					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\loja_de_app\\" + folderName + "\\" + fileName);
+		} catch (IOException e) {
+			Alerts.showAlert("Criação de arquivo", null, "Houve um problema: " + e.getMessage(), AlertType.ERROR);
+		}
+	}
+
+	@FXML
+	private void onBtInstallMozillaFirefoxAction() {
+		// Iniciando com um valor padrão do caminho
+		String strPath = "C:\\apps_para_padronizacao_V3\\mozilla_firefox";
+		String correctPath = "mozilla_firefox_padrao_atualizado";
+		String folderName = FolderOrFileFinder.searchFolder(strPath, correctPath);
+		String fileName = FolderOrFileFinder.searchFile(strPath, folderName);
+
+		try {
+			// Este comando faz o acesso ao cmd que por sua vez inicia o instalador
+			Runtime.getRuntime().exec(
+					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\mozilla_firefox\\" + folderName + "\\" + fileName);
+		} catch (IOException e) {
+			Alerts.showAlert("Criação de arquivo", null, "Houve um problema: " + e.getMessage(), AlertType.ERROR);
+		}
+	}
+	
+	@FXML
+	private void onBtInstallPDF24Creator() {
+		
+	}
+	
+	@FXML
+	private void onBtInstallSamsungEasyDocumentCreator() {
+		
+	}
+	
+	@FXML
+	private void onBtInstallScanBack() {
+		
+	}
+	
+	@FXML
+	private void onBtInstallSilverlight() {
+		
+	}
+	
+	@FXML
+	private void onBtInstallTrenAntivirus() {
+		
+	}
+	
+	@FXML
+	private void onBtInstallUltraVNC() {
+		
+	}
+
 	// MÉTODOS QUE FARÃO A DESINSTALAÇÃO DOS PROGRAMAS
 	public void onBtUninstall7zip() {
 		String folderName = "7-Zip";
@@ -309,6 +596,8 @@ public class MainViewController {
 		boolean resultProgram86 = SearcherVerify.verifyPrograms86(folderName);
 		if (resultProgram == false || resultProgram86 == false) {
 			this.onBtInstall7zipAction();
+			lblCheck7zip.setStyle("-fx-text-fill: red");
+			lblCheck7zip.setText("X");
 		} else {
 			Alerts.showAlert("Erro na desinstalação", null, "Este programa não está instalado", AlertType.ERROR);
 		}
@@ -319,6 +608,8 @@ public class MainViewController {
 		try {
 			Runtime.getRuntime().exec(
 					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\adobe_flashplayer\\adobe_flashplayer_ppapi_padrao_atualizado\\uninstall.bat");
+			lblCheckAdobePPAPI.setStyle("-fx-text-fill: red");
+			lblCheckAdobePPAPI.setText("X");
 		} catch (IOException e) {
 			boolean resultProgram = SearcherVerify.verifyPrograms(folderName);
 			boolean resultProgram86 = SearcherVerify.verifyPrograms86(folderName);
@@ -425,7 +716,81 @@ public class MainViewController {
 		} catch (IOException e) {
 			System.out.println("Programa não encontrado");
 		}
+	}
 
+	public void onBtUninstallInternetExplorer() {
+		try {
+			Runtime.getRuntime().exec(
+					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\internet_explorer\\internet_explorer_padrao_atualizado\\uninstall.bat");
+		} catch (IOException e) {
+			System.out.println("Programa não encontrado");
+		}
+	}
+
+	public void onBtUninstallJavaRuntime() {
+		try {
+			Runtime.getRuntime().exec(
+					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\java_runtime\\java_runtime_padrao_atualizado\\uninstall.bat");
+		} catch (IOException e) {
+			System.out.println("Programa não encontrado");
+		}
+	}
+
+	public void onBtUninstallLibreOffice() {
+		try {
+			Runtime.getRuntime().exec(
+					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\libre_office\\libre_office_padrao_atualizado\\uninstall.bat");
+		} catch (IOException e) {
+			System.out.println("Programa não encontrado");
+		}
+	}
+
+	public void onBtUninstallLojaDeApp() {
+		try {
+			Runtime.getRuntime().exec(
+					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\loja_de_app\\loja_de_apps_padrao_atualizado\\uninstall.bat");
+		} catch (IOException e) {
+			System.out.println("Programa não encontrado");
+		}
+	}
+
+	public void onBtUninstallMozillaFirefox() {
+		try {
+			Runtime.getRuntime().exec(
+					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\mozilla_firefox\\mozilla_firefox_padrao_atualizado\\uninstall.bat");
+		} catch (IOException e) {
+			System.out.println("Programa não encontrado");
+		}
+	}
+	
+	@FXML
+	private void onBtUninstallPDF24Creator() {
+		
+	}
+	
+	@FXML
+	private void onBtUninstallSamsungEasyDocumentCreator() {
+		
+	}
+	
+	@FXML
+	private void onBtUninstallScanBack() {
+		
+	}
+	
+	@FXML
+	private void onBtUninstallSilverlight() {
+		
+	}
+	
+	@FXML
+	private void onBtUninstallTrenAntivirus() {
+		
+	}
+	
+	@FXML
+	private void onBtUninstallUltraVNC() {
+		
 	}
 
 	// MÉTODOS QUE FARÁ A ATUALIZAÇÃO DO APLICATIVO
@@ -1032,8 +1397,8 @@ public class MainViewController {
 			Alerts.showAlert("Informação", null, "Este arquivo já está atualizado", AlertType.WARNING);
 		} else {
 			try {
-				Runtime.getRuntime()
-						.exec("cmd.exe /c del C:\\apps_para_padronizacao_V3\\hp_scan_twain\\hp_scan_twain_padrao_atualizado\\"
+				Runtime.getRuntime().exec(
+						"cmd.exe /c del C:\\apps_para_padronizacao_V3\\hp_scan_twain\\hp_scan_twain_padrao_atualizado\\"
 								+ fileLocalName);
 				Runtime.getRuntime().exec(
 						"cmd.exe /c copy /Y \\\\dados\\seplan\\detic_coengi_seserc__softwares\\impressao\\hp_scan_twain\\"
@@ -1046,6 +1411,294 @@ public class MainViewController {
 						AlertType.ERROR);
 			}
 		}
+	}
 
+	public void onBtUpdateInternetExplorer() {
+		// Pegando o arquivo da pasta local
+		String strLocalPath = "C:\\apps_para_padronizacao_V3\\internet_explorer\\internet_explorer_padrao_atualizado";
+		File folderLocal = new File(strLocalPath);
+		File[] filesLocal = folderLocal.listFiles(File::isFile);
+		String fileLocalName = "";
+		for (File fileLocal : filesLocal) {
+			int indBat = fileLocal.getName().lastIndexOf("bat");
+			if (indBat != 10 && !fileLocal.getName().equals("uninstall.bat")) {
+				fileLocalName = fileLocal.getName();
+			}
+		}
+
+		// Pegando o arquivo da pasta remota
+		String strRemotePath = "\\\\dados\\seplan\\detic_coengi_seserc__softwares\\navegadores\\internet_explorer\\internet_explorer-v11-win_7-64bits";
+		File folderRemote = new File(strRemotePath);
+		File[] filesRemote = folderRemote.listFiles(File::isFile);
+		String remoteFileName = "";
+		for (File fileRemote : filesRemote) {
+			remoteFileName = fileRemote.getName();
+		}
+
+		// Verificando se o arquivo local é igual ao arquivo remoto
+		// Caso seja, então arquivo já atualizado, caso não, será atualizado pelo do
+		// remoto
+		if (fileLocalName.equals(remoteFileName)) {
+			Alerts.showAlert("Informação", null, "Este arquivo já está atualizado", AlertType.WARNING);
+		} else {
+			try {
+				Runtime.getRuntime().exec(
+						"cmd.exe /c del C:\\apps_para_padronizacao_V3\\internet_explorer\\internet_explorer_padrao_atualizado\\"
+								+ fileLocalName);
+				Runtime.getRuntime().exec(
+						"cmd.exe /c copy /Y \\\\dados\\seplan\\detic_coengi_seserc__softwares\\navegadores\\internet_explorer\\internet_explorer-v11-win_7-64bits\\"
+								+ remoteFileName
+								+ " C:\\apps_para_padronizacao_V3\\internet_explorer\\internet_explorer_padrao_atualizado");
+				Alerts.showAlert("Sucesso na atualização", null, "Atualização realizada com sucesso",
+						AlertType.INFORMATION);
+			} catch (IOException e) {
+				Alerts.showAlert("Erro na atualização", null, "Houve um erro na atualização: " + e.getMessage(),
+						AlertType.ERROR);
+			}
+		}
+	}
+
+	public void onBtUpdateJavaRuntime() {
+		// Pegando o arquivo da pasta local
+		String strLocalPath = "C:\\apps_para_padronizacao_V3\\java_runtime\\java_runtime_padrao_atualizado";
+		File folderLocal = new File(strLocalPath);
+		File[] filesLocal = folderLocal.listFiles(File::isFile);
+		String fileLocalName = "";
+		for (File fileLocal : filesLocal) {
+			int indBat = fileLocal.getName().lastIndexOf("bat");
+			if (indBat != 10 && !fileLocal.getName().equals("uninstall.bat")) {
+				fileLocalName = fileLocal.getName();
+			}
+		}
+
+		// Encontrando o nome mais atualizado da pasta remota(servidor)
+		String strRemPath = "\\\\dados\\seplan\\detic_coengi_seserc__softwares\\plugins_e_complementos\\java_runtime";
+		File remotePath = new File(strRemPath);
+		File[] remoteFolders = remotePath.listFiles(File::isDirectory);
+		String remoteFolder = "";
+		int verMaior = 0;
+		int bits = 0;
+		for (File remoteFolderServer : remoteFolders) {
+			if (remoteFolderServer.getName().charAt(0) != '_') {
+				String dadoBruto = remoteFolderServer.getName().substring(16, 19).toString();
+				String bitsBruto = remoteFolderServer.getName().substring(20, 22).toString();
+				if (!dadoBruto.equals("5.0") && !dadoBruto.equals("80-") && !bitsBruto.equals("50")
+						&& !bitsBruto.equals("2b")) {
+					if (Integer.parseInt(dadoBruto) > verMaior && Integer.parseInt(bitsBruto) == 64) {
+						verMaior = Integer.parseInt(dadoBruto);
+						remoteFolder = remoteFolderServer.getName();
+					}
+				}
+			}
+		}
+
+		// Pegando o arquivo da pasta remota
+		String strRemotePath = "\\\\dados\\seplan\\detic_coengi_seserc__softwares\\plugins_e_complementos\\java_runtime\\"
+				+ remoteFolder;
+		File folderRemote = new File(strRemotePath);
+		File[] filesRemote = folderRemote.listFiles(File::isFile);
+		String remoteFileName = "";
+		for (File fileRemote : filesRemote) {
+			remoteFileName = fileRemote.getName();
+		}
+
+		// Verificando se o arquivo local é igual ao arquivo remoto
+		// Caso seja, então arquivo já atualizado, caso não, será atualizado pelo do
+		// remoto
+		if (fileLocalName.equals(remoteFileName)) {
+			Alerts.showAlert("Informação", null, "Este arquivo já está atualizado", AlertType.WARNING);
+		} else {
+			try {
+				Runtime.getRuntime().exec(
+						"cmd.exe /c del C:\\apps_para_padronizacao_V3\\java_runtime\\java_runtime_padrao_atualizado\\"
+								+ fileLocalName);
+				Runtime.getRuntime().exec(
+						"cmd.exe /c copy /Y \\\\dados\\seplan\\detic_coengi_seserc__softwares\\plugins_e_complementos\\java_runtime\\"
+								+ remoteFolder + "\\" + remoteFileName
+								+ " C:\\apps_para_padronizacao_V3\\java_runtime\\java_runtime_padrao_atualizado");
+				Alerts.showAlert("Sucesso na atualização", null, "Atualização realizada com sucesso",
+						AlertType.INFORMATION);
+			} catch (IOException e) {
+				Alerts.showAlert("Erro na atualização", null, "Houve um erro na atualização: " + e.getMessage(),
+						AlertType.ERROR);
+			}
+		}
+	}
+
+	public void onBtUpdateLibreOffice() {
+		// Pegando o arquivo da pasta local
+		String strLocalPath = "C:\\apps_para_padronizacao_V3\\libre_office\\libre_office_padrao_atualizado";
+		File folderLocal = new File(strLocalPath);
+		File[] filesLocal = folderLocal.listFiles(File::isFile);
+		String fileLocalName = "";
+		for (File fileLocal : filesLocal) {
+			int indBat = fileLocal.getName().lastIndexOf("bat");
+			if (indBat != 10 && !fileLocal.getName().equals("uninstall.bat")) {
+				fileLocalName = fileLocal.getName();
+			}
+		}
+
+		// Encontrando o nome mais atualizado da pasta remota(servidor)
+		String strRemPath = "\\\\dados\\seplan\\detic_coengi_seserc__softwares\\escritorio\\libre_office";
+		File remotePath = new File(strRemPath);
+		File[] remoteFolders = remotePath.listFiles(File::isDirectory);
+		String remoteFolder = "";
+		int priVerMaior = 0;
+		int secVerMaior = 0;
+		int terVerMaior = 0;
+		for (File remoteFolderServer : remoteFolders) {
+			String verRemota = remoteFolderServer.getName().substring(14, 19);
+			int priMaior = Integer.parseInt(verRemota.substring(0, 1));
+			int secMaior = Integer.parseInt(verRemota.substring(2, 3));
+			int terMaior = Integer.parseInt(verRemota.substring(4));
+			if (priMaior > priVerMaior || secMaior > secVerMaior || terMaior > terVerMaior) {
+				priVerMaior = priMaior;
+				secVerMaior = secMaior;
+				terVerMaior = terMaior;
+				remoteFolder = remoteFolderServer.getName();
+			}
+		}
+
+		// Pegando o arquivo da pasta remota
+		String strRemotePath = "\\\\dados\\seplan\\detic_coengi_seserc__softwares\\escritorio\\libre_office\\"
+				+ remoteFolder;
+		File folderRemote = new File(strRemotePath);
+		File[] filesRemote = folderRemote.listFiles(File::isFile);
+		String remoteFileName = "";
+		for (File fileRemote : filesRemote) {
+			remoteFileName = fileRemote.getName();
+		}
+
+		// Verificando se o arquivo local é igual ao arquivo remoto
+		// Caso seja, então arquivo já atualizado, caso não, será atualizado pelo do
+		// remoto
+		if (fileLocalName.equals(remoteFileName)) {
+			Alerts.showAlert("Informação", null, "Este arquivo já está atualizado", AlertType.WARNING);
+		} else {
+			try {
+				Runtime.getRuntime().exec(
+						"cmd.exe /c del C:\\apps_para_padronizacao_V3\\libre_office\\libre_office_padrao_atualizado\\"
+								+ fileLocalName);
+				Runtime.getRuntime().exec(
+						"cmd.exe /c copy /Y \\\\dados\\seplan\\detic_coengi_seserc__softwares\\escritorio\\libre_office\\"
+								+ remoteFolder + "\\" + remoteFileName
+								+ " C:\\apps_para_padronizacao_V3\\libre_office\\libre_office_padrao_atualizado");
+				Alerts.showAlert("Sucesso na atualização", null, "Atualização realizada com sucesso",
+						AlertType.INFORMATION);
+			} catch (IOException e) {
+				Alerts.showAlert("Erro na atualização", null, "Houve um erro na atualização: " + e.getMessage(),
+						AlertType.ERROR);
+			}
+		}
+
+	}
+
+	public void onBtUpdateLojaDeApp() {
+		Alerts.showAlert("Informação", null, "Não há arquivos de atualização para este programa", AlertType.WARNING);
+	}
+
+	public void onBtUpdateMozillaFirefox() {
+		// Pegando o arquivo da pasta local
+		String strLocalPath = "C:\\apps_para_padronizacao_V3\\mozilla_firefox\\mozilla_firefox_padrao_atualizado";
+		File folderLocal = new File(strLocalPath);
+		File[] filesLocal = folderLocal.listFiles(File::isFile);
+		String fileLocalName = "";
+		for (File fileLocal : filesLocal) {
+			int indBat = fileLocal.getName().lastIndexOf("bat");
+			if (indBat != 10 && !fileLocal.getName().equals("uninstall.bat")
+					&& !fileLocal.getName().equals("configura-padroniza_navegadores.exe")) {
+				fileLocalName = fileLocal.getName();
+			}
+		}
+
+		// Encontrando o nome mais atualizado da pasta remota(servidor)
+		String strRemPath = "\\\\dados\\seplan\\detic_coengi_seserc__softwares\\navegadores\\mozilla_firefox";
+		File remotePath = new File(strRemPath);
+		File[] remoteFolders = remotePath.listFiles(File::isDirectory);
+		String remoteFolder = "";
+		int verMaior = 0;
+		for (File remoteFolderServer : remoteFolders) {
+			if (!remoteFolderServer.getName().equals("desabilita_corretor_ortografico")
+					&& !remoteFolderServer.getName().equals("desinstalador")
+					&& !remoteFolderServer.getName().equals("extensoes")) {
+				int verInd = Integer.parseInt(remoteFolderServer.getName().substring(17, 19));
+				if (verInd > verMaior) {
+					verMaior = verInd;
+					remoteFolder = remoteFolderServer.getName();
+				}
+			}
+		}
+
+		// Pegando o arquivo da pasta remota
+		String strRemotePath = "\\\\dados\\seplan\\detic_coengi_seserc__softwares\\navegadores\\mozilla_firefox\\"
+				+ remoteFolder;
+		File folderRemote = new File(strRemotePath);
+		File[] filesRemote = folderRemote.listFiles(File::isFile);
+		String remoteFileName = "";
+		for (File fileRemote : filesRemote) {
+			remoteFileName = fileRemote.getName();
+		}
+
+		// Verificando se o arquivo local é igual ao arquivo remoto
+		// Caso seja, então arquivo já atualizado, caso não, será atualizado pelo do
+		// remoto
+		if (fileLocalName.equals(remoteFileName)) {
+			Alerts.showAlert("Informação", null, "Este arquivo já está atualizado", AlertType.WARNING);
+		} else {
+			try {
+				Runtime.getRuntime().exec(
+						"cmd.exe /c del C:\\apps_para_padronizacao_V3\\mozilla_firefox\\mozilla_firefox_padrao_atualizado\\"
+								+ fileLocalName);
+				Runtime.getRuntime().exec(
+						"cmd.exe /c copy /Y \\\\dados\\seplan\\detic_coengi_seserc__softwares\\navegadores\\mozilla_firefox\\"
+								+ remoteFolder + "\\" + remoteFileName
+								+ " C:\\apps_para_padronizacao_V3\\mozilla_firefox\\mozilla_firefox_padrao_atualizado");
+				Alerts.showAlert("Sucesso na atualização", null, "Atualização realizada com sucesso",
+						AlertType.INFORMATION);
+			} catch (IOException e) {
+				Alerts.showAlert("Erro na atualização", null, "Houve um erro na atualização: " + e.getMessage(),
+						AlertType.ERROR);
+			}
+		}
+	}
+	
+	@FXML
+	private void onBtUpdatePDF24Creator() {
+		
+	}
+	
+	@FXML
+	private void onBtUpdateSamsungEasyDocumentCreator() {
+		
+	}
+	
+	@FXML
+	private void onBtUpdateScanBack() {
+		
+	}
+	
+	@FXML
+	private void onBtUpdateSilverlight() {
+		
+	}
+	
+	@FXML
+	private void onBtUpdateTrenAntivirus() {
+		
+	}
+	
+	@FXML
+	private void onBtUpdateUltraVNC() {
+		
+	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+//		try {
+//			System.out.println(Runtime.getRuntime().exec("cmd.exe /c start winget list").waitFor());
+//		} catch (IOException | InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 }

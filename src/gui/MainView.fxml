@@ -10,22 +10,33 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="461.0" prefWidth="554.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainViewController">
+<AnchorPane prefHeight="681.0" prefWidth="554.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainViewController">
    <children>
       <Label layoutX="170.0" layoutY="5.0" text="Lista de Aplicativos" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="180.0">
          <font>
             <Font name="Times New Roman Bold" size="24.0" />
          </font>
       </Label>
-      <GridPane layoutX="14.0" layoutY="61.0" prefHeight="369.0" prefWidth="537.0">
+      <GridPane layoutX="14.0" layoutY="61.0" prefHeight="596.0" prefWidth="537.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="268.0" minWidth="10.0" prefWidth="267.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="270.0" minWidth="10.0" prefWidth="270.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="274.0" minWidth="10.0" prefWidth="270.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -195,6 +206,350 @@
                   <Button fx:id="btUpdateHpScanTwain" mnemonicParsing="false" onAction="#onBtUpdateHPScanTwain" text="Atualizar" />
                </children>
             </HBox>
+            <Label text="Internet Explorer" GridPane.rowIndex="10">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label text="Java Runtime" GridPane.rowIndex="11">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label text="Libre Office" GridPane.rowIndex="12">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label text="Loja de App" GridPane.rowIndex="13">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label text="Mozilla Firefox" GridPane.rowIndex="14">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="1" GridPane.rowIndex="10">
+               <children>
+                  <Button fx:id="btInstallInternetExplorer" mnemonicParsing="false" onAction="#onBtInstallInternetExplorerAction" text="Instalar">
+                     <HBox.margin>
+                        <Insets left="8.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="btUninstallInternetExplorer" mnemonicParsing="false" onAction="#onBtUninstallInternetExplorer" text="Desinstalar" />
+                  <Button fx:id="btUpdateInternetExplorer" mnemonicParsing="false" onAction="#onBtUpdateInternetExplorer" text="Atualizar" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="1" GridPane.rowIndex="11">
+               <children>
+                  <Button fx:id="btInstallJavaRuntime" mnemonicParsing="false" onAction="#onBtInstallJavaRuntimeAction" text="Instalar">
+                     <HBox.margin>
+                        <Insets left="8.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="btUninstallJavaRuntime" mnemonicParsing="false" onAction="#onBtUninstallJavaRuntime" text="Desinstalar" />
+                  <Button fx:id="btUpdateJavaRuntime" mnemonicParsing="false" onAction="#onBtUpdateJavaRuntime" text="Atualizar" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="1" GridPane.rowIndex="12">
+               <children>
+                  <Button fx:id="btInstallLibreOffice" mnemonicParsing="false" onAction="#onBtInstallLibreOfficeAction" text="Instalar">
+                     <HBox.margin>
+                        <Insets left="8.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="btUninstallLibreOffice" mnemonicParsing="false" onAction="#onBtUninstallLibreOffice" text="Desinstalar" />
+                  <Button fx:id="btUpdateLibreOffice" mnemonicParsing="false" onAction="#onBtUpdateLibreOffice" text="Atualizar" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="1" GridPane.rowIndex="13">
+               <children>
+                  <Button fx:id="btInstallLojaDeApp" mnemonicParsing="false" onAction="#onBtInstallLojaDeAppsAction" text="Instalar">
+                     <HBox.margin>
+                        <Insets left="8.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="btUninstallLojaDeApp" mnemonicParsing="false" onAction="#onBtUninstallLojaDeApp" text="Desinstalar" />
+                  <Button fx:id="btUpdateLojaDeApp" mnemonicParsing="false" onAction="#onBtUpdateLojaDeApp" text="Atualizar" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="1" GridPane.rowIndex="14">
+               <children>
+                  <Button fx:id="btInstallMozillaFireFox" mnemonicParsing="false" onAction="#onBtInstallMozillaFirefoxAction" text="Instalar">
+                     <HBox.margin>
+                        <Insets left="8.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="btUninstallMozillaFireFox" mnemonicParsing="false" onAction="#onBtUninstallMozillaFirefox" text="Desinstalar" />
+                  <Button fx:id="btUpdateMozillaFireFox" mnemonicParsing="false" onAction="#onBtUpdateMozillaFirefox" text="Atualizar" />
+               </children>
+            </HBox>
+            <Label text="PDF24 Creator" GridPane.rowIndex="15">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label text="SamsungDocumentCreator" GridPane.rowIndex="16">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label text="Scan Back" GridPane.rowIndex="17">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label text="Silverlight" GridPane.rowIndex="18">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label text="Trend Antivírus" GridPane.rowIndex="19">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Label text="Ultra VNC" GridPane.rowIndex="20">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="1" GridPane.rowIndex="15">
+               <children>
+                  <Button fx:id="btInstallPDF24Creator" mnemonicParsing="false" onAction="#onBtInstallPDF24Creator" text="Instalar">
+                     <HBox.margin>
+                        <Insets left="8.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="btUninstallPDF24Creator" mnemonicParsing="false" onAction="#onBtUninstallPDF24Creator" text="Desinstalar" />
+                  <Button fx:id="btUpdatePDF24Creator" mnemonicParsing="false" onAction="#onBtUpdatePDF24Creator" text="Atualizar" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="1" GridPane.rowIndex="16">
+               <children>
+                  <Button fx:id="btInstallSamsungEasyDocumentCreator" mnemonicParsing="false" onAction="#onBtInstallSamsungEasyDocumentCreator" text="Instalar">
+                     <HBox.margin>
+                        <Insets left="8.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="btUninstallSamsungEasyDocumentCreator" mnemonicParsing="false" onAction="#onBtUninstallSamsungEasyDocumentCreator" text="Desinstalar" />
+                  <Button fx:id="btUpdateSamsungEasyDocumentCreator" mnemonicParsing="false" onAction="#onBtUpdateSamsungEasyDocumentCreator" text="Atualizar" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="1" GridPane.rowIndex="17">
+               <children>
+                  <Button fx:id="btInstallScanBack" mnemonicParsing="false" onAction="#onBtInstallScanBack" text="Instalar">
+                     <HBox.margin>
+                        <Insets left="8.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="btUninstallScanBack" mnemonicParsing="false" onAction="#onBtUninstallScanBack" text="Desinstalar" />
+                  <Button fx:id="btUpdateScanBack" mnemonicParsing="false" onAction="#onBtUpdateScanBack" text="Atualizar" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="1" GridPane.rowIndex="18">
+               <children>
+                  <Button fx:id="btInstallSilverlight" mnemonicParsing="false" onAction="#onBtInstallSilverlight" text="Instalar">
+                     <HBox.margin>
+                        <Insets left="8.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="btUninstallSilverlight" mnemonicParsing="false" onAction="#onBtUninstallSilverlight" text="Desinstalar" />
+                  <Button fx:id="btUpdateSilverlight" mnemonicParsing="false" onAction="#onBtUpdateSilverlight" text="Atualizar" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="1" GridPane.rowIndex="19">
+               <children>
+                  <Button fx:id="btInstallTrendAntivirus" mnemonicParsing="false" onAction="#onBtInstallTrenAntivirus" text="Instalar">
+                     <HBox.margin>
+                        <Insets left="8.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="btUninstallTrendAntivirus" mnemonicParsing="false" onAction="#onBtUninstallTrenAntivirus" text="Desinstalar" />
+                  <Button fx:id="btUpdateTrendAntivirus" mnemonicParsing="false" onAction="#onBtUpdateTrenAntivirus" text="Atualizar" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0" GridPane.columnIndex="1" GridPane.rowIndex="20">
+               <children>
+                  <Button fx:id="btInstallUltraVNC" mnemonicParsing="false" onAction="#onBtInstallUltraVNC" text="Instalar">
+                     <HBox.margin>
+                        <Insets left="8.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="btUninstallUltraVNC" mnemonicParsing="false" onAction="#onBtUninstallUltraVNC" text="Desinstalar" />
+                  <Button fx:id="btUpdateUltraVNC" mnemonicParsing="false" onAction="#onBtUpdateUltraVNC" text="Atualizar" />
+               </children>
+            </HBox>
+            <Label fx:id="lblCheck7zip" textFill="RED">
+               <GridPane.margin>
+                  <Insets left="40.0" />
+               </GridPane.margin>
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblCheckAdobePPAPI" textFill="RED" GridPane.rowIndex="1">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="205.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="lblCheckAdobePlugin" textFill="RED" GridPane.rowIndex="2">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="205.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="lblCheckAdobeReader" textFill="RED" GridPane.rowIndex="3">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="120.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="lblCheckAtualizacaoAdobeReader" textFill="RED" GridPane.rowIndex="4">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="240.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="lblCheckAdobeShockwave" textFill="RED" GridPane.rowIndex="5">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="155.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="lblCheckChrome" textFill="RED" GridPane.rowIndex="6">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="130.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="lblCheckOCS" textFill="RED" GridPane.rowIndex="7">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="100.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="lblCheckFreePDF" textFill="RED" GridPane.rowIndex="8">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="80.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="lblCheckHPScan" textFill="RED" GridPane.rowIndex="9">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="120.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="lblCheckIE" textFill="RED" GridPane.rowIndex="10">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="140.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="lblCheckJavaRuntime" textFill="RED" GridPane.rowIndex="11">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="110.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="lblCheckLibreOffice" textFill="RED" GridPane.rowIndex="12">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="100.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="lblCheckLojaApp" textFill="RED" GridPane.rowIndex="13">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="100.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="lblCheckMozilla" textFill="RED" GridPane.rowIndex="14">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="120.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="lblCheckPDF24" textFill="RED" GridPane.rowIndex="15">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="120.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="lblCheckSamsungEasyDocument" textFill="RED" GridPane.rowIndex="16">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="220.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="lblCheckScanBack" textFill="RED" GridPane.rowIndex="17">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="85.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="lblCheckSilverlight" textFill="RED" GridPane.rowIndex="18">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="85.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="lblCheckTrendAntivirus" textFill="RED" GridPane.rowIndex="19">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="125.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="lblCheckVNC" textFill="RED" GridPane.rowIndex="20">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="85.0" />
+               </GridPane.margin>
+            </Label>
          </children>
       </GridPane>
    </children>
