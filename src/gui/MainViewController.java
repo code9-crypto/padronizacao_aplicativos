@@ -15,69 +15,69 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-public class MainViewController implements Initializable{
-	
-	//Texto para formatação referente aos programas se estão instalados ou não
+public class MainViewController {
+
+	// Texto para formatação referente aos programas se estão instalados ou não
 	@FXML
 	private Label lblCheck7zip;
-	
+
 	@FXML
 	private Label lblCheckAdobePPAPI;
-	
+
 	@FXML
 	private Label lblCheckAdobePlugin;
-	
+
 	@FXML
 	private Label lblCheckAdobeReader;
-	
+
 	@FXML
 	private Label lblCheckAtualizacaoAdobeReader;
-	
+
 	@FXML
 	private Label lblCheckAdobeShockwave;
-	
+
 	@FXML
 	private Label lblCheckChrome;
-	
+
 	@FXML
 	private Label lblCheckOCS;
-	
+
 	@FXML
 	private Label lblCheckFreePDF;
-	
+
 	@FXML
 	private Label lblCheckHPScan;
-	
+
 	@FXML
 	private Label lblCheckIE;
-	
+
 	@FXML
 	private Label lblCheckJavaRuntime;
-	
+
 	@FXML
 	private Label lblCheckLibreOffice;
-	
+
 	@FXML
 	private Label lblCheckLojaApp;
-	
+
 	@FXML
 	private Label lblCheckMozilla;
-	
+
 	@FXML
 	private Label lblCheckPDF24;
-	
+
 	@FXML
 	private Label lblCheckSamsungEasyDocument;
-	
+
 	@FXML
 	private Label lblCheckScanBack;
-	
+
 	@FXML
 	private Label lblCheckSilverlight;
-	
+
 	@FXML
 	private Label lblCheckTrendAntivirus;
-	
+
 	@FXML
 	private Label lblCheckVNC;
 
@@ -126,7 +126,7 @@ public class MainViewController implements Initializable{
 
 	@FXML
 	private Button btInstallMozillaFireFox;
-	
+
 	@FXML
 	private Button btInstallPDF24Creator;
 
@@ -190,7 +190,7 @@ public class MainViewController implements Initializable{
 
 	@FXML
 	private Button btUninstallMozillaFireFox;
-	
+
 	@FXML
 	private Button btUninstallPDF24Creator;
 
@@ -208,7 +208,6 @@ public class MainViewController implements Initializable{
 
 	@FXML
 	private Button btUninstallUltraVNC;
-
 
 	// Botões para atualizar o programa
 	@FXML
@@ -255,7 +254,7 @@ public class MainViewController implements Initializable{
 
 	@FXML
 	private Button btUpdateMozillaFireFox;
-	
+
 	@FXML
 	private Button btUpdatePDF24Creator;
 
@@ -298,7 +297,7 @@ public class MainViewController implements Initializable{
 		} catch (IOException e) {
 			Alerts.showAlert("Criação de arquivo", null, "Houve um problema: " + e.getMessage(), AlertType.ERROR);
 		}
-		
+
 	}
 
 	@FXML
@@ -332,6 +331,8 @@ public class MainViewController implements Initializable{
 			// Este comando faz o acesso ao cmd que por sua vez inicia o instalador
 			Runtime.getRuntime().exec("cmd.exe /c start C:\\apps_para_padronizacao_V3\\adobe_flashplayer\\" + folderName
 					+ "\\" + fileName);
+			lblCheckAdobePlugin.setStyle("-fx-text-fill: green");
+			lblCheckAdobePlugin.setText("OK");
 		} catch (IOException e) {
 			Alerts.showAlert("Criação de arquivo", null, "Houve um problema: " + e.getMessage(), AlertType.ERROR);
 		}
@@ -349,6 +350,8 @@ public class MainViewController implements Initializable{
 			// Este comando faz o acesso ao cmd que por sua vez inicia o instalador
 			Runtime.getRuntime().exec(
 					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\adobe_reader\\" + folderName + "\\" + fileName);
+			lblCheckAdobeReader.setStyle("-fx-text-fill: green");
+			lblCheckAdobeReader.setText("OK");
 		} catch (IOException e) {
 			Alerts.showAlert("Criação de arquivo", null, "Houve um problema: " + e.getMessage(), AlertType.ERROR);
 		}
@@ -366,6 +369,8 @@ public class MainViewController implements Initializable{
 			// Este comando faz o acesso ao cmd que por sua vez inicia o instalador
 			Runtime.getRuntime().exec(
 					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\adobe_reader\\" + folderName + "\\" + fileName);
+			lblCheckAtualizacaoAdobeReader.setStyle("-fx-text-fill: green");
+			lblCheckAtualizacaoAdobeReader.setText("OK");
 		} catch (IOException e) {
 			Alerts.showAlert("Criação de arquivo", null, "Houve um problema: " + e.getMessage(), AlertType.ERROR);
 		}
@@ -383,6 +388,8 @@ public class MainViewController implements Initializable{
 			// Este comando faz o acesso ao cmd que por sua vez inicia o instalador
 			Runtime.getRuntime().exec(
 					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\adobe_shockwave\\" + folderName + "\\" + fileName);
+			lblCheckAdobeShockwave.setStyle("-fx-text-fill: green");
+			lblCheckAdobeShockwave.setText("OK");
 		} catch (IOException e) {
 			Alerts.showAlert("Criação de arquivo", null, "Houve um problema: " + e.getMessage(), AlertType.ERROR);
 		}
@@ -400,6 +407,8 @@ public class MainViewController implements Initializable{
 			// Este comando faz o acesso ao cmd que por sua vez inicia o instalador
 			Runtime.getRuntime()
 					.exec("cmd.exe /c start C:\\apps_para_padronizacao_V3\\chrome\\" + folderName + "\\" + fileName);
+			lblCheckChrome.setStyle("-fx-text-fill: green");
+			lblCheckChrome.setText("OK");
 		} catch (IOException e) {
 			Alerts.showAlert("Criação de arquivo", null, "Houve um problema: " + e.getMessage(), AlertType.ERROR);
 		}
@@ -417,6 +426,8 @@ public class MainViewController implements Initializable{
 			// Este comando faz o acesso ao cmd que por sua vez inicia o instalador
 			Runtime.getRuntime().exec(
 					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\cliente_ocs\\" + folderName + "\\" + fileName);
+			lblCheckOCS.setStyle("-fx-text-fill: green");
+			lblCheckOCS.setText("OK");
 		} catch (IOException e) {
 			Alerts.showAlert("Criação de arquivo", null, "Houve um problema: " + e.getMessage(), AlertType.ERROR);
 		}
@@ -433,6 +444,8 @@ public class MainViewController implements Initializable{
 		try {
 			Runtime.getRuntime()
 					.exec("cmd.exe /c start C:\\apps_para_padronizacao_V3\\freepdf\\" + folderName + "\\gs907w64.exe");
+			lblCheckFreePDF.setStyle("-fx-text-fill: green");
+			lblCheckFreePDF.setText("OK");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -469,6 +482,8 @@ public class MainViewController implements Initializable{
 			// Este comando faz o acesso ao cmd que por sua vez inicia o instalador
 			Runtime.getRuntime().exec(
 					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\hp_scan_twain\\" + folderName + "\\" + fileName);
+			lblCheckHPScan.setStyle("-fx-text-fill: green");
+			lblCheckHPScan.setText("OK");
 		} catch (IOException e) {
 			Alerts.showAlert("Criação de arquivo", null, "Houve um problema: " + e.getMessage(), AlertType.ERROR);
 		}
@@ -486,6 +501,8 @@ public class MainViewController implements Initializable{
 			// Este comando faz o acesso ao cmd que por sua vez inicia o instalador
 			Runtime.getRuntime().exec("cmd.exe /c start C:\\apps_para_padronizacao_V3\\internet_explorer\\" + folderName
 					+ "\\" + fileName);
+			lblCheckIE.setStyle("-fx-text-fill: green");
+			lblCheckIE.setText("OK");
 		} catch (IOException e) {
 			Alerts.showAlert("Criação de arquivo", null, "Houve um problema: " + e.getMessage(), AlertType.ERROR);
 		}
@@ -503,6 +520,8 @@ public class MainViewController implements Initializable{
 			// Este comando faz o acesso ao cmd que por sua vez inicia o instalador
 			Runtime.getRuntime().exec(
 					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\java_runtime\\" + folderName + "\\" + fileName);
+			lblCheckJavaRuntime.setStyle("-fx-text-fill: green");
+			lblCheckJavaRuntime.setText("OK");
 		} catch (IOException e) {
 			Alerts.showAlert("Criação de arquivo", null, "Houve um problema: " + e.getMessage(), AlertType.ERROR);
 		}
@@ -520,6 +539,8 @@ public class MainViewController implements Initializable{
 			// Este comando faz o acesso ao cmd que por sua vez inicia o instalador
 			Runtime.getRuntime().exec(
 					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\libre_office\\" + folderName + "\\" + fileName);
+			lblCheckLibreOffice.setStyle("-fx-text-fill: green");
+			lblCheckLibreOffice.setText("OK");
 		} catch (IOException e) {
 			Alerts.showAlert("Criação de arquivo", null, "Houve um problema: " + e.getMessage(), AlertType.ERROR);
 		}
@@ -537,6 +558,8 @@ public class MainViewController implements Initializable{
 			// Este comando faz o acesso ao cmd que por sua vez inicia o instalador
 			Runtime.getRuntime().exec(
 					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\loja_de_app\\" + folderName + "\\" + fileName);
+			lblCheckLojaApp.setStyle("-fx-text-fill: green");
+			lblCheckLojaApp.setText("OK");
 		} catch (IOException e) {
 			Alerts.showAlert("Criação de arquivo", null, "Houve um problema: " + e.getMessage(), AlertType.ERROR);
 		}
@@ -554,39 +577,125 @@ public class MainViewController implements Initializable{
 			// Este comando faz o acesso ao cmd que por sua vez inicia o instalador
 			Runtime.getRuntime().exec(
 					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\mozilla_firefox\\" + folderName + "\\" + fileName);
+			lblCheckMozilla.setStyle("-fx-text-fill: green");
+			lblCheckMozilla.setText("OK");
 		} catch (IOException e) {
 			Alerts.showAlert("Criação de arquivo", null, "Houve um problema: " + e.getMessage(), AlertType.ERROR);
 		}
 	}
-	
+
 	@FXML
 	private void onBtInstallPDF24Creator() {
-		
+		// Iniciando com um valor padrão do caminho
+		String strPath = "C:\\apps_para_padronizacao_V3\\pdf24_creator";
+		String correctPath = "Pdf24Creator_padrao_atualizado";
+		String folderName = FolderOrFileFinder.searchFolder(strPath, correctPath);
+		String fileName = FolderOrFileFinder.searchFile(strPath, folderName);
+
+		try {
+			// Este comando faz o acesso ao cmd que por sua vez inicia o instalador
+			Runtime.getRuntime().exec(
+					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\pdf24_creator\\" + folderName + "\\" + fileName);
+			lblCheckPDF24.setStyle("-fx-text-fill: green");
+			lblCheckPDF24.setText("OK");
+		} catch (IOException e) {
+			Alerts.showAlert("Criação de arquivo", null, "Houve um problema: " + e.getMessage(), AlertType.ERROR);
+		}
 	}
-	
+
 	@FXML
 	private void onBtInstallSamsungEasyDocumentCreator() {
-		
+		// Iniciando com um valor padrão do caminho
+		String strPath = "C:\\apps_para_padronizacao_V3\\samsung_easy_document_creator";
+		String correctPath = "easy_document_creator_padrao_atualizado";
+		String folderName = FolderOrFileFinder.searchFolder(strPath, correctPath);
+		String fileName = FolderOrFileFinder.searchFile(strPath, folderName);
+
+		try {
+			// Este comando faz o acesso ao cmd que por sua vez inicia o instalador
+			Runtime.getRuntime().exec("cmd.exe /c start C:\\apps_para_padronizacao_V3\\samsung_easy_document_creator\\"
+					+ folderName + "\\" + fileName);
+			lblCheckSamsungEasyDocument.setStyle("-fx-text-fill: green");
+			lblCheckSamsungEasyDocument.setText("OK");
+		} catch (IOException e) {
+			Alerts.showAlert("Criação de arquivo", null, "Houve um problema: " + e.getMessage(), AlertType.ERROR);
+		}
 	}
-	
+
 	@FXML
 	private void onBtInstallScanBack() {
-		
+		// Iniciando com um valor padrão do caminho
+		String strPath = "C:\\apps_para_padronizacao_V3\\scanback";
+		String correctPath = "scanback_padrao_atualizado";
+		String folderName = FolderOrFileFinder.searchFolder(strPath, correctPath);
+		String fileName = FolderOrFileFinder.searchFile(strPath, folderName);
+
+		try {
+			// Este comando faz o acesso ao cmd que por sua vez inicia o instalador
+			Runtime.getRuntime()
+					.exec("cmd.exe /c start C:\\apps_para_padronizacao_V3\\scanback\\" + folderName + "\\" + fileName);
+			lblCheckScanBack.setStyle("-fx-text-fill: green");
+			lblCheckScanBack.setText("OK");
+		} catch (IOException e) {
+			Alerts.showAlert("Criação de arquivo", null, "Houve um problema: " + e.getMessage(), AlertType.ERROR);
+		}
 	}
-	
+
 	@FXML
 	private void onBtInstallSilverlight() {
-		
+		// Iniciando com um valor padrão do caminho
+		String strPath = "C:\\apps_para_padronizacao_V3\\silverlight";
+		String correctPath = "silverlight_padrao_atualizado";
+		String folderName = FolderOrFileFinder.searchFolder(strPath, correctPath);
+		String fileName = FolderOrFileFinder.searchFile(strPath, folderName);
+
+		try {
+			// Este comando faz o acesso ao cmd que por sua vez inicia o instalador
+			Runtime.getRuntime().exec(
+					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\silverlight\\" + folderName + "\\" + fileName);
+			lblCheckSilverlight.setStyle("-fx-text-fill: green");
+			lblCheckSilverlight.setText("OK");
+		} catch (IOException e) {
+			Alerts.showAlert("Criação de arquivo", null, "Houve um problema: " + e.getMessage(), AlertType.ERROR);
+		}
 	}
-	
+
 	@FXML
 	private void onBtInstallTrenAntivirus() {
-		
+		// Iniciando com um valor padrão do caminho
+		String strPath = "C:\\apps_para_padronizacao_V3\\trend_antivirus_apex";
+		String correctPath = "antivirus_padrao_atualizado";
+		String folderName = FolderOrFileFinder.searchFolder(strPath, correctPath);
+		String fileName = FolderOrFileFinder.searchFile(strPath, folderName);
+
+		try {
+			// Este comando faz o acesso ao cmd que por sua vez inicia o instalador
+			Runtime.getRuntime().exec("cmd.exe /c start C:\\apps_para_padronizacao_V3\\trend_antivirus_apex\\"
+					+ folderName + "\\" + fileName);
+			lblCheckTrendAntivirus.setStyle("-fx-text-fill: green");
+			lblCheckTrendAntivirus.setText("OK");
+		} catch (IOException e) {
+			Alerts.showAlert("Criação de arquivo", null, "Houve um problema: " + e.getMessage(), AlertType.ERROR);
+		}
 	}
-	
+
 	@FXML
 	private void onBtInstallUltraVNC() {
-		
+		// Iniciando com um valor padrão do caminho
+		String strPath = "C:\\apps_para_padronizacao_V3\\ultravnc";
+		String correctPath = "ultravnc_padrao_atualizado";
+		String folderName = FolderOrFileFinder.searchFolder(strPath, correctPath);
+		String fileName = FolderOrFileFinder.searchFile(strPath, folderName);
+
+		try {
+			// Este comando faz o acesso ao cmd que por sua vez inicia o instalador
+			Runtime.getRuntime()
+					.exec("cmd.exe /c start C:\\apps_para_padronizacao_V3\\ultravnc\\" + folderName + "\\" + fileName);
+			lblCheckVNC.setStyle("-fx-text-fill: green");
+			lblCheckVNC.setText("OK");
+		} catch (IOException e) {
+			Alerts.showAlert("Criação de arquivo", null, "Houve um problema: " + e.getMessage(), AlertType.ERROR);
+		}
 	}
 
 	// MÉTODOS QUE FARÃO A DESINSTALAÇÃO DOS PROGRAMAS
@@ -626,6 +735,8 @@ public class MainViewController implements Initializable{
 		try {
 			Runtime.getRuntime().exec(
 					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\adobe_flashplayer\\adobe_flashplayer_plugin_padrao_atualizado\\uninstall.bat");
+			lblCheckAdobePlugin.setStyle("-fx-text-fill: red");
+			lblCheckAdobePlugin.setText("X");
 		} catch (IOException e) {
 			boolean resultProgram = SearcherVerify.verifyPrograms(folderName);
 			boolean resultProgram86 = SearcherVerify.verifyPrograms86(folderName);
@@ -642,6 +753,8 @@ public class MainViewController implements Initializable{
 		try {
 			Runtime.getRuntime().exec(
 					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\adobe_reader\\adobe_reader_dc_padrao_atualizado\\uninstall.bat");
+			lblCheckAdobeReader.setStyle("-fx-text-fill: red");
+			lblCheckAdobeReader.setText("X");
 		} catch (IOException e) {
 			boolean resultProgram = SearcherVerify.verifyPrograms(folderName);
 			boolean resultProgram86 = SearcherVerify.verifyPrograms86(folderName);
@@ -658,6 +771,8 @@ public class MainViewController implements Initializable{
 		try {
 			Runtime.getRuntime().exec(
 					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\adobe_reader\\adobe_reader_padrao_atualizado\\uninstall.bat");
+			lblCheckAtualizacaoAdobeReader.setStyle("-fx-text-fill: red");
+			lblCheckAtualizacaoAdobeReader.setText("X");
 		} catch (IOException e) {
 			boolean resultProgram = SearcherVerify.verifyPrograms(folderName);
 			boolean resultProgram86 = SearcherVerify.verifyPrograms86(folderName);
@@ -673,6 +788,8 @@ public class MainViewController implements Initializable{
 		try {
 			Runtime.getRuntime().exec(
 					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\adobe_shockwave\\adobe_shockwave_player_padrao_atualizado\\uninstall.bat");
+			lblCheckAdobeShockwave.setStyle("-fx-text-fill: red");
+			lblCheckAdobeShockwave.setText("X");
 		} catch (IOException e) {
 			System.out.println("Programa não encontrado");
 		}
@@ -683,6 +800,8 @@ public class MainViewController implements Initializable{
 		try {
 			Runtime.getRuntime().exec(
 					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\chrome\\google_chrome_padrao_atualizado\\uninstall.bat");
+			lblCheckChrome.setStyle("-fx-text-fill: red");
+			lblCheckChrome.setText("X");
 		} catch (IOException e) {
 			System.out.println("Programa não encontrado");
 		}
@@ -693,6 +812,8 @@ public class MainViewController implements Initializable{
 		try {
 			Runtime.getRuntime().exec(
 					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\cliente_ocs\\cliente_ocs_padrao_atualizado\\uninstall.bat");
+			lblCheckOCS.setStyle("-fx-text-fill: red");
+			lblCheckOCS.setText("X");
 		} catch (IOException e) {
 			System.out.println("Programa não encontrado");
 		}
@@ -703,6 +824,8 @@ public class MainViewController implements Initializable{
 		try {
 			Runtime.getRuntime().exec(
 					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\freepdf\\freepdf_padrao_atualizado\\uninstall.bat");
+			lblCheckFreePDF.setStyle("-fx-text-fill: red");
+			lblCheckFreePDF.setText("X");
 		} catch (IOException e) {
 			System.out.println("Programa não encontrado");
 		}
@@ -713,6 +836,8 @@ public class MainViewController implements Initializable{
 		try {
 			Runtime.getRuntime().exec(
 					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\hp_scan_twain\\hp_scan_twain_padrao_atualizado\\uninstall.bat");
+			lblCheckHPScan.setStyle("-fx-text-fill: red");
+			lblCheckHPScan.setText("X");
 		} catch (IOException e) {
 			System.out.println("Programa não encontrado");
 		}
@@ -722,6 +847,8 @@ public class MainViewController implements Initializable{
 		try {
 			Runtime.getRuntime().exec(
 					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\internet_explorer\\internet_explorer_padrao_atualizado\\uninstall.bat");
+			lblCheckIE.setStyle("-fx-text-fill: red");
+			lblCheckIE.setText("X");
 		} catch (IOException e) {
 			System.out.println("Programa não encontrado");
 		}
@@ -731,6 +858,8 @@ public class MainViewController implements Initializable{
 		try {
 			Runtime.getRuntime().exec(
 					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\java_runtime\\java_runtime_padrao_atualizado\\uninstall.bat");
+			lblCheckJavaRuntime.setStyle("-fx-text-fill: red");
+			lblCheckJavaRuntime.setText("X");
 		} catch (IOException e) {
 			System.out.println("Programa não encontrado");
 		}
@@ -740,6 +869,8 @@ public class MainViewController implements Initializable{
 		try {
 			Runtime.getRuntime().exec(
 					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\libre_office\\libre_office_padrao_atualizado\\uninstall.bat");
+			lblCheckLibreOffice.setStyle("-fx-text-fill: red");
+			lblCheckLibreOffice.setText("X");
 		} catch (IOException e) {
 			System.out.println("Programa não encontrado");
 		}
@@ -749,6 +880,8 @@ public class MainViewController implements Initializable{
 		try {
 			Runtime.getRuntime().exec(
 					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\loja_de_app\\loja_de_apps_padrao_atualizado\\uninstall.bat");
+			lblCheckLojaApp.setStyle("-fx-text-fill: red");
+			lblCheckLojaApp.setText("X");
 		} catch (IOException e) {
 			System.out.println("Programa não encontrado");
 		}
@@ -758,39 +891,62 @@ public class MainViewController implements Initializable{
 		try {
 			Runtime.getRuntime().exec(
 					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\mozilla_firefox\\mozilla_firefox_padrao_atualizado\\uninstall.bat");
+			lblCheckMozilla.setStyle("-fx-text-fill: red");
+			lblCheckMozilla.setText("X");
 		} catch (IOException e) {
 			System.out.println("Programa não encontrado");
 		}
 	}
-	
+
 	@FXML
 	private void onBtUninstallPDF24Creator() {
-		
+		try {
+			Runtime.getRuntime().exec(
+					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\pdf24_creator\\Pdf24Creator_padrao_atualizado\\uninstall.bat");
+			lblCheckPDF24.setStyle("-fx-text-fill: red");
+			lblCheckPDF24.setText("X");
+		} catch (IOException e) {
+			System.out.println("Programa não encontrado");
+		}
 	}
-	
+
 	@FXML
 	private void onBtUninstallSamsungEasyDocumentCreator() {
-		
+		try {
+			Runtime.getRuntime().exec(
+					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\samsung_easy_document_creator\\easy_document_creator_padrao_atualizado\\uninstall.bat");
+			lblCheckSamsungEasyDocument.setStyle("-fx-text-fill: red");
+			lblCheckSamsungEasyDocument.setText("X");
+		} catch (IOException e) {
+			System.out.println("Programa não encontrado");
+		}
 	}
-	
+
 	@FXML
 	private void onBtUninstallScanBack() {
-		
+		try {
+			Runtime.getRuntime().exec(
+					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\scanback\\scanback_padrao_atualizado\\uninstall.bat");
+			lblCheckScanBack.setStyle("-fx-text-fill: red");
+			lblCheckScanBack.setText("X");
+		} catch (IOException e) {
+			System.out.println("Programa não encontrado");
+		}
 	}
-	
+
 	@FXML
 	private void onBtUninstallSilverlight() {
-		
+
 	}
-	
+
 	@FXML
 	private void onBtUninstallTrenAntivirus() {
-		
+
 	}
-	
+
 	@FXML
 	private void onBtUninstallUltraVNC() {
-		
+
 	}
 
 	// MÉTODOS QUE FARÁ A ATUALIZAÇÃO DO APLICATIVO
@@ -1661,44 +1817,35 @@ public class MainViewController implements Initializable{
 			}
 		}
 	}
-	
+
 	@FXML
 	private void onBtUpdatePDF24Creator() {
-		
-	}
-	
-	@FXML
-	private void onBtUpdateSamsungEasyDocumentCreator() {
-		
-	}
-	
-	@FXML
-	private void onBtUpdateScanBack() {
-		
-	}
-	
-	@FXML
-	private void onBtUpdateSilverlight() {
-		
-	}
-	
-	@FXML
-	private void onBtUpdateTrenAntivirus() {
-		
-	}
-	
-	@FXML
-	private void onBtUpdateUltraVNC() {
-		
+
 	}
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-//		try {
-//			System.out.println(Runtime.getRuntime().exec("cmd.exe /c start winget list").waitFor());
-//		} catch (IOException | InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+	@FXML
+	private void onBtUpdateSamsungEasyDocumentCreator() {
+
 	}
+
+	@FXML
+	private void onBtUpdateScanBack() {
+
+	}
+
+	@FXML
+	private void onBtUpdateSilverlight() {
+
+	}
+
+	@FXML
+	private void onBtUpdateTrenAntivirus() {
+
+	}
+
+	@FXML
+	private void onBtUpdateUltraVNC() {
+
+	}
+
 }
