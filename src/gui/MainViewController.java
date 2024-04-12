@@ -936,17 +936,38 @@ public class MainViewController {
 
 	@FXML
 	private void onBtUninstallSilverlight() {
-
+		try {
+			Runtime.getRuntime().exec(
+					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\silverlight\\silverlight_padrao_atualizado\\uninstall.bat");
+			lblCheckSilverlight.setStyle("-fx-text-fill: red");
+			lblCheckSilverlight.setText("X");
+		} catch (IOException e) {
+			System.out.println("Programa não encontrado");
+		}
 	}
 
 	@FXML
 	private void onBtUninstallTrenAntivirus() {
-
+		try {
+			Runtime.getRuntime().exec(
+					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\trend_antivirus_apex\\antivirus_padrao_atualizado\\uninstall.bat");
+			lblCheckTrendAntivirus.setStyle("-fx-text-fill: red");
+			lblCheckTrendAntivirus.setText("X");
+		} catch (IOException e) {
+			System.out.println("Programa não encontrado");
+		}
 	}
 
 	@FXML
 	private void onBtUninstallUltraVNC() {
-
+		try {
+			Runtime.getRuntime().exec(
+					"cmd.exe /c start C:\\apps_para_padronizacao_V3\\ultravnc\\ultravnc_padrao_atualizado\\uninstall.bat");
+			lblCheckVNC.setStyle("-fx-text-fill: red");
+			lblCheckVNC.setText("X");
+		} catch (IOException e) {
+			System.out.println("Programa não encontrado");
+		}
 	}
 
 	// MÉTODOS QUE FARÁ A ATUALIZAÇÃO DO APLICATIVO
@@ -1820,22 +1841,245 @@ public class MainViewController {
 
 	@FXML
 	private void onBtUpdatePDF24Creator() {
+		// Pegando o arquivo da pasta local
+		String strLocalPath = "C:\\apps_para_padronizacao_V3\\pdf24_creator\\Pdf24Creator_padrao_atualizado";
+		File folderLocal = new File(strLocalPath);
+		File[] filesLocal = folderLocal.listFiles(File::isFile);
+		String fileLocalName = "";
+		for (File fileLocal : filesLocal) {
+			int indBat = fileLocal.getName().lastIndexOf("bat");
+			if (indBat != 10 && !fileLocal.getName().equals("uninstall.bat")
+					&& !fileLocal.getName().equals("configura-padroniza_navegadores.exe")) {
+				fileLocalName = fileLocal.getName();
+			}
+		}
+
+		// Encontrando o nome mais atualizado da pasta remota(servidor)
+		String strRemPath = "\\\\dados\\seplan\\detic_coengi_seserc__softwares\\escritorio\\pdf24_creator";
+		File remotePath = new File(strRemPath);
+		File[] remoteFolders = remotePath.listFiles(File::isDirectory);
+		String remoteFolder = "";
+		for (File remoteFolderServer : remoteFolders) {
+			String ver = remoteFolderServer.getName().substring(remoteFolderServer.getName().indexOf("_") + 1)
+					.toString();
+			int indPri = 0;
+			int indSec = 0;
+			int indTer = 0;
+			if (indPri < Integer.parseInt(ver.substring(0, 1)) && indSec < Integer.parseInt(ver.substring(2, 3))
+					&& indTer < Integer.parseInt(ver.substring(4))) {
+				indPri = Integer.parseInt(ver.substring(0, 1));
+				indSec = Integer.parseInt(ver.substring(2, 3));
+				indTer = Integer.parseInt(ver.substring(4));
+				remoteFolder = remoteFolderServer.getName();
+			}
+		}
+
+		// Pegando o arquivo da pasta remota
+		String strRemotePath = "\\\\dados\\seplan\\detic_coengi_seserc__softwares\\escritorio\\pdf24_creator\\"
+				+ remoteFolder;
+		File folderRemote = new File(strRemotePath);
+		File[] filesRemote = folderRemote.listFiles(File::isFile);
+		String remoteFileName = "";
+		for (File fileRemote : filesRemote) {
+			remoteFileName = fileRemote.getName();
+		}
+
+		// Verificando se o arquivo local é igual ao arquivo remoto
+		// Caso seja, então arquivo já atualizado, caso não, será atualizado pelo do
+		// remoto
+		if (fileLocalName.equals(remoteFileName)) {
+			Alerts.showAlert("Informação", null, "Este arquivo já está atualizado", AlertType.WARNING);
+		} else {
+			try {
+				Runtime.getRuntime().exec(
+						"cmd.exe /c del C:\\apps_para_padronizacao_V3\\pdf24_creator\\Pdf24Creator_padrao_atualizado\\"
+								+ fileLocalName);
+				Runtime.getRuntime().exec(
+						"cmd.exe /c copy /Y \\\\dados\\seplan\\detic_coengi_seserc__softwares\\escritorio\\pdf24_creator\\"
+								+ remoteFolder + "\\" + remoteFileName
+								+ " C:\\apps_para_padronizacao_V3\\pdf24_creator\\Pdf24Creator_padrao_atualizado");
+				Alerts.showAlert("Sucesso na atualização", null, "Atualização realizada com sucesso",
+						AlertType.INFORMATION);
+			} catch (IOException e) {
+				Alerts.showAlert("Erro na atualização", null, "Houve um erro na atualização: " + e.getMessage(),
+						AlertType.ERROR);
+			}
+		}
 
 	}
 
 	@FXML
 	private void onBtUpdateSamsungEasyDocumentCreator() {
+		// Pegando o arquivo da pasta local
+		String strLocalPath = "C:\\apps_para_padronizacao_V3\\samsung_easy_document_creator\\easy_document_creator_padrao_atualizado";
+		File folderLocal = new File(strLocalPath);
+		File[] filesLocal = folderLocal.listFiles(File::isFile);
+		String fileLocalName = "";
+		for (File fileLocal : filesLocal) {
+			int indBat = fileLocal.getName().lastIndexOf("bat");
+			if (indBat != 10 && !fileLocal.getName().equals("uninstall.bat")) {
+				fileLocalName = fileLocal.getName();
+			}
+		}
+
+		// Encontrando o nome mais atualizado da pasta remota(servidor)
+		String strRemPath = "\\\\dados\\seplan\\detic_coengi_seserc__softwares\\impressao\\samsung_easy_document_creator";
+		File remotePath = new File(strRemPath);
+		File[] remoteFolders = remotePath.listFiles(File::isDirectory);
+		String remoteFolder = "";
+		for (File remoteFolderServer : remoteFolders) {
+			String ver = remoteFolderServer.getName().substring(remoteFolderServer.getName().indexOf("v") + 1)
+					.toString();
+			int indPri = 0;
+			int indSec = 0;
+			int indTer = 0;
+			if (indPri < Integer.parseInt(ver.substring(0, 1)) && indSec < Integer.parseInt(ver.substring(2, 4))) {
+				indPri = Integer.parseInt(ver.substring(0, 1));
+				indSec = Integer.parseInt(ver.substring(2, 4));
+				indTer = Integer.parseInt(ver.substring(5));
+				remoteFolder = remoteFolderServer.getName();
+			}
+		}
+
+		// Pegando o arquivo da pasta remota
+		String strRemotePath = "\\\\dados\\seplan\\detic_coengi_seserc__softwares\\impressao\\samsung_easy_document_creator\\"
+				+ remoteFolder;
+		File folderRemote = new File(strRemotePath);
+		File[] filesRemote = folderRemote.listFiles(File::isFile);
+		String remoteFileName = "";
+		for (File fileRemote : filesRemote) {
+			if (fileRemote.getName().equals(remoteFolder + ".exe")) {
+				remoteFileName = fileRemote.getName();
+			}
+		}
+
+		// Verificando se o arquivo local é igual ao arquivo remoto
+		// Caso seja, então arquivo já atualizado, caso não, será atualizado pelo do
+		// remoto
+		if (fileLocalName.equals(remoteFileName)) {
+			Alerts.showAlert("Informação", null, "Este arquivo já está atualizado", AlertType.WARNING);
+		} else {
+			try {
+				Runtime.getRuntime().exec(
+						"cmd.exe /c del C:\\apps_para_padronizacao_V3\\samsung_easy_document_creator\\easy_document_creator_padrao_atualizado\\"
+								+ fileLocalName);
+				Runtime.getRuntime().exec(
+						"cmd.exe /c copy /Y \\\\dados\\seplan\\detic_coengi_seserc__softwares\\impressao\\samsung_easy_document_creator\\"
+								+ remoteFolder + "\\" + remoteFileName
+								+ " C:\\apps_para_padronizacao_V3\\samsung_easy_document_creator\\easy_document_creator_padrao_atualizado");
+				Alerts.showAlert("Sucesso na atualização", null, "Atualização realizada com sucesso",
+						AlertType.INFORMATION);
+			} catch (IOException e) {
+				Alerts.showAlert("Erro na atualização", null, "Houve um erro na atualização: " + e.getMessage(),
+						AlertType.ERROR);
+			}
+		}
 
 	}
 
 	@FXML
 	private void onBtUpdateScanBack() {
+		// Pegando o arquivo da pasta local
+		String strLocalPath = "C:\\apps_para_padronizacao_V3\\scanback\\scanback_padrao_atualizado";
+		File folderLocal = new File(strLocalPath);
+		File[] filesLocal = folderLocal.listFiles(File::isFile);
+		String fileLocalName = "";
+		for (File fileLocal : filesLocal) {
+			int indBat = fileLocal.getName().lastIndexOf("bat");
+			if (indBat != 10 && !fileLocal.getName().equals("uninstall.bat")) {
+				fileLocalName = fileLocal.getName();
+			}
+		}
+
+		// Encontrando o nome mais atualizado da pasta remota(servidor)
+		String strRemPath = "\\\\dados\\seplan\\detic_coengi_seserc__softwares\\impressao\\scanback";
+		File remotePath = new File(strRemPath);
+		File[] remoteFolders = remotePath.listFiles(File::isDirectory);
+		String remoteFolder = "";
+		for (File remoteFolderServer : remoteFolders) {
+			String ver = remoteFolderServer.getName().substring(remoteFolderServer.getName().indexOf("v") + 1)
+					.toString();
+			double indVer = 0.0;
+			if (indVer < Double.parseDouble(ver)) {
+				indVer = Double.parseDouble(ver);
+				remoteFolder = remoteFolderServer.getName();
+			}
+		}
+
+		// Pegando o arquivo da pasta remota
+		String strRemotePath = "\\\\dados\\seplan\\detic_coengi_seserc__softwares\\impressao\\scanback\\"
+				+ remoteFolder;
+		File folderRemote = new File(strRemotePath);
+		File[] filesRemote = folderRemote.listFiles(File::isFile);
+		String remoteFileName = "";
+		for (File fileRemote : filesRemote) {
+			if (fileRemote.getName().equals("instalacao_pms.exe")) {
+				remoteFileName = fileRemote.getName();
+			}
+		}
+
+		// Verificando se o arquivo local é igual ao arquivo remoto
+		// Caso seja, então arquivo já atualizado, caso não, será atualizado pelo do
+		// remoto
+		if (fileLocalName.equals(remoteFileName)) {
+			Alerts.showAlert("Informação", null, "Este arquivo já está atualizado", AlertType.WARNING);
+		} else {
+			try {
+				Runtime.getRuntime()
+						.exec("cmd.exe /c del C:\\apps_para_padronizacao_V3\\scanback\\scanback_padrao_atualizado\\"
+								+ fileLocalName);
+				Runtime.getRuntime().exec(
+						"cmd.exe /c copy /Y \\\\dados\\seplan\\detic_coengi_seserc__softwares\\impressao\\scanback\\"
+								+ remoteFolder + "\\" + remoteFileName
+								+ " C:\\apps_para_padronizacao_V3\\scanback\\scanback_padrao_atualizado");
+				Alerts.showAlert("Sucesso na atualização", null, "Atualização realizada com sucesso",
+						AlertType.INFORMATION);
+			} catch (IOException e) {
+				Alerts.showAlert("Erro na atualização", null, "Houve um erro na atualização: " + e.getMessage(),
+						AlertType.ERROR);
+			}
+		}
 
 	}
 
 	@FXML
 	private void onBtUpdateSilverlight() {
+		// Pegando o arquivo da pasta local
+		String strLocalPath = "C:\\apps_para_padronizacao_V3\\silverlight\\silverlight_padrao_atualizado";
+		File folderLocal = new File(strLocalPath);
+		File[] filesLocal = folderLocal.listFiles(File::isFile);
+		String fileLocalName = "";
+		for (File fileLocal : filesLocal) {
+			int indBat = fileLocal.getName().lastIndexOf("bat");
+			if (indBat != 10 && !fileLocal.getName().equals("uninstall.bat")) {
+				fileLocalName = fileLocal.getName();
+			}
+		}
 
+		// Encontrando o nome mais atualizado da pasta remota(servidor)
+		String strRemPath = "\\\\dados\\seplan\\detic_coengi_seserc__softwares\\plugins_e_complementos\\silverlight";
+		File remotePath = new File(strRemPath);
+		File[] remoteFolders = remotePath.listFiles(File::isDirectory);
+		String remoteFolder = "";
+		for (File remoteFolderServer : remoteFolders) {
+			String ver = remoteFolderServer.getName().substring(remoteFolderServer.getName().lastIndexOf("_")+1);
+			int verArqui = Integer.parseInt(remoteFolderServer.getName().substring(remoteFolderServer.getName().indexOf("x")+1, remoteFolderServer.getName().lastIndexOf("_")));
+			int indPri = 0;
+			int indSec = 0;
+			int indTec = 0;
+			int indQua = 0;
+			if( indPri < Integer.parseInt(ver.substring(0,1)) || 
+					indSec < Integer.parseInt(ver.substring(2,3)) || 
+					indTec < Integer.parseInt(ver.substring(4,9)) || 
+					indQua < Integer.parseInt(ver.substring(10)) && verArqui == 64) {
+				indPri = Integer.parseInt(ver.substring(0,1));
+				indSec = Integer.parseInt(ver.substring(2,3));
+				indTec = Integer.parseInt(ver.substring(4,9));
+				indQua = Integer.parseInt(ver.substring(10));
+				remoteFolder = remoteFolderServer.getName();
+			}
+		}
+		System.out.println(remoteFolder);
 	}
 
 	@FXML
