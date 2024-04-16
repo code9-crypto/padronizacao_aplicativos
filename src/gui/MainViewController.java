@@ -2,6 +2,7 @@ package gui;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -18,6 +19,9 @@ import javafx.scene.control.Label;
 public class MainViewController {
 
 	// Texto para formatação referente aos programas se estão instalados ou não
+	@FXML
+	private Label lblCheckPlano;
+
 	@FXML
 	private Label lblCheck7zip;
 
@@ -272,6 +276,22 @@ public class MainViewController {
 
 	@FXML
 	private Button btUpdateUltraVNC;
+
+	@FXML
+	private Button btnDefinirPlano;
+
+	@FXML
+	private void onBtDefinirPlanoDeFundo() {
+		try {
+			Runtime.getRuntime()
+					.exec("cmd.exe /c start C:\\apps_para_padronizacao_V3\\plano_de_fundo\\definir_plano_de_fundo.bat");
+			lblCheckPlano.setStyle("-fx-text-fill: green");
+			lblCheckPlano.setText("OK");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 	/*
 	 * -----------------------------------------------------------------------------
@@ -971,7 +991,7 @@ public class MainViewController {
 	}
 
 	// MÉTODOS QUE FARÁ A ATUALIZAÇÃO DO APLICATIVO
-	public void onBtUpdate7zip() {
+	public void onBtUpdate7zip() throws InvocationTargetException {
 		// Encontrando nome do arquivo na pasta local
 		String strPath = "C:\\apps_para_padronizacao_V3\\7zip\\7zip_padrao_atualizado";
 		File path = new File(strPath);
@@ -1022,25 +1042,29 @@ public class MainViewController {
 		// Verificando se o arquivo local é igual ao do servidor
 		// Caso seja, então o arquivo já está atualizado
 		// Caso não, então será atualizado pelo arquivo do servidor
-		if (fileName.equals(remoteFileServer)) {
-			Alerts.showAlert("Informação", null, "Este arquivo já está atualizado", AlertType.WARNING);
-		} else {
-			try {
-				// Excluindo o arquivo antigo da pasta local
-				Runtime.getRuntime().exec(
-						"cmd.exe /c del C:\\apps_para_padronizacao_V3\\7zip\\7zip_padrao_atualizado\\" + fileName);
-
-				// Adicionando o arquivo atualizado na pasta local
-				Runtime.getRuntime().exec(
-						"cmd.exe /c copy /Y \\\\dados\\seplan\\detic_coengi_seserc__softwares\\compactadores\\7zip\\"
-								+ remoteFolder + "\\" + remoteFileServer
-								+ " C:\\apps_para_padronizacao_V3\\7zip\\7zip_padrao_atualizado");
-				Alerts.showAlert("Sucesso na atualização", null, "Arquivo atualizado com sucesso",
-						AlertType.INFORMATION);
-			} catch (IOException e) {
-				Alerts.showAlert("Erro na atualização", null, "Houve um erro na atualização: " + e.getMessage(),
-						AlertType.ERROR);
+		try {
+			if (fileName.equals(remoteFileServer)) {
+				Alerts.showAlert("Informação", null, "Este arquivo já está atualizado", AlertType.WARNING);
+			} else {
+				try {
+					// Excluindo o arquivo antigo da pasta local
+					Runtime.getRuntime().exec(
+							"cmd.exe /c del C:\\apps_para_padronizacao_V3\\7zip\\7zip_padrao_atualizado\\" + fileName);
+	
+					// Adicionando o arquivo atualizado na pasta local
+					Runtime.getRuntime().exec(
+							"cmd.exe /c copy /Y \\\\dados\\seplan\\detic_coengi_seserc__softwares\\compactadores\\7zip\\"
+									+ remoteFolder + "\\" + remoteFileServer
+									+ " C:\\apps_para_padronizacao_V3\\7zip\\7zip_padrao_atualizado");
+					Alerts.showAlert("Sucesso na atualização", null, "Arquivo atualizado com sucesso",
+							AlertType.INFORMATION);
+				} catch (IOException e) {
+					Alerts.showAlert("Erro na atualização", null, "Houve um erro na atualização: " + e.getMessage(),
+							AlertType.ERROR);
+				}
 			}
+		}catch(NullPointerException e) {
+			Alerts.showAlert("Erro na Atualização", null, "Não foi possível se conectar ao servidor: " + e.getMessage(), AlertType.ERROR);			
 		}
 
 	}
@@ -2062,34 +2086,171 @@ public class MainViewController {
 		File[] remoteFolders = remotePath.listFiles(File::isDirectory);
 		String remoteFolder = "";
 		for (File remoteFolderServer : remoteFolders) {
-			String ver = remoteFolderServer.getName().substring(remoteFolderServer.getName().lastIndexOf("_")+1);
-			int verArqui = Integer.parseInt(remoteFolderServer.getName().substring(remoteFolderServer.getName().indexOf("x")+1, remoteFolderServer.getName().lastIndexOf("_")));
+			String ver = remoteFolderServer.getName().substring(remoteFolderServer.getName().lastIndexOf("_") + 1);
+			int verArqui = Integer.parseInt(remoteFolderServer.getName().substring(
+					remoteFolderServer.getName().indexOf("x") + 1, remoteFolderServer.getName().lastIndexOf("_")));
 			int indPri = 0;
 			int indSec = 0;
 			int indTec = 0;
 			int indQua = 0;
-			if( indPri < Integer.parseInt(ver.substring(0,1)) || 
-					indSec < Integer.parseInt(ver.substring(2,3)) || 
-					indTec < Integer.parseInt(ver.substring(4,9)) || 
-					indQua < Integer.parseInt(ver.substring(10)) && verArqui == 64) {
-				indPri = Integer.parseInt(ver.substring(0,1));
-				indSec = Integer.parseInt(ver.substring(2,3));
-				indTec = Integer.parseInt(ver.substring(4,9));
+			if (indPri < Integer.parseInt(ver.substring(0, 1)) && indSec < Integer.parseInt(ver.substring(2, 3))
+					&& indTec < Integer.parseInt(ver.substring(4, 9)) && indQua < Integer.parseInt(ver.substring(10))
+					|| verArqui == 64) {
+				indPri = Integer.parseInt(ver.substring(0, 1));
+				indSec = Integer.parseInt(ver.substring(2, 3));
+				indTec = Integer.parseInt(ver.substring(4, 9));
 				indQua = Integer.parseInt(ver.substring(10));
 				remoteFolder = remoteFolderServer.getName();
 			}
 		}
-		System.out.println(remoteFolder);
+
+		// Pegando o arquivo da pasta remota
+		String strRemotePath = "\\\\dados\\seplan\\detic_coengi_seserc__softwares\\plugins_e_complementos\\silverlight\\"
+				+ remoteFolder;
+		File folderRemote = new File(strRemotePath);
+		File[] filesRemote = folderRemote.listFiles(File::isFile);
+		String remoteFileName = "";
+		for (File fileRemote : filesRemote) {
+			remoteFileName = fileRemote.getName();
+		}
+
+		// Verificando se o arquivo local é igual ao arquivo remoto
+		// Caso seja, então arquivo já atualizado, caso não, será atualizado pelo do
+		// remoto
+		if (fileLocalName.equals(remoteFileName)) {
+			Alerts.showAlert("Informação", null, "Este arquivo já está atualizado", AlertType.WARNING);
+		} else {
+			try {
+				Runtime.getRuntime().exec(
+						"cmd.exe /c del C:\\apps_para_padronizacao_V3\\silverlight\\silverlight_padrao_atualizado\\"
+								+ fileLocalName);
+				Runtime.getRuntime().exec(
+						"cmd.exe /c copy /Y \\\\dados\\seplan\\detic_coengi_seserc__softwares\\plugins_e_complementos\\silverlight\\"
+								+ remoteFolder + "\\" + remoteFileName
+								+ " C:\\apps_para_padronizacao_V3\\silverlight\\silverlight_padrao_atualizado");
+				Alerts.showAlert("Sucesso na atualização", null, "Atualização realizada com sucesso",
+						AlertType.INFORMATION);
+			} catch (IOException e) {
+				Alerts.showAlert("Erro na atualização", null, "Houve um erro na atualização: " + e.getMessage(),
+						AlertType.ERROR);
+			}
+		}
 	}
 
 	@FXML
 	private void onBtUpdateTrenAntivirus() {
+		// Pegando o arquivo da pasta local
+		String strLocalPath = "C:\\apps_para_padronizacao_V3\\trend_antivirus_apex\\antivirus_padrao_atualizado";
+		File folderLocal = new File(strLocalPath);
+		File[] filesLocal = folderLocal.listFiles(File::isFile);
+		String fileLocalName = "";
+		for (File fileLocal : filesLocal) {
+			int indBat = fileLocal.getName().lastIndexOf("bat");
+			if (indBat != 10 && !fileLocal.getName().equals("uninstall.bat")) {
+				fileLocalName = fileLocal.getName();
+			}
+		}
 
+		// Encontrando o nome mais atualizado da pasta remota(servidor)
+		String strRemPath = "\\\\dados\\seplan\\detic_coengi_seserc__softwares\\seguranca\\trend_antivirus\\cliente";
+		File remotePath = new File(strRemPath);
+		File[] remoteFolders = remotePath.listFiles(File::isDirectory);
+		String remoteFolder = "";
+		for (File remoteFolderServer : remoteFolders) {
+			if (remoteFolderServer.getName().equals("trend_antivirus_apex")) {
+				remoteFolder = remoteFolderServer.getName();
+			}
+		}
+
+		// Pegando o arquivo da pasta remota
+		String strRemotePath = "\\\\dados\\seplan\\detic_coengi_seserc__softwares\\seguranca\\trend_antivirus\\cliente\\"
+				+ remoteFolder;
+		File folderRemote = new File(strRemotePath);
+		File[] filesRemote = folderRemote.listFiles(File::isFile);
+		String remoteFileName = "";
+		for (File fileRemote : filesRemote) {
+			if (fileRemote.getName().equals("agent_cloud_x64.msi")) {
+				remoteFileName = fileRemote.getName();
+			}
+		}
+
+		// Verificando se o arquivo local é igual ao arquivo remoto
+		// Caso seja, então arquivo já atualizado, caso não, será atualizado pelo do
+		// remoto
+		if (fileLocalName.equals(remoteFileName)) {
+			Alerts.showAlert("Informação", null, "Este arquivo já está atualizado", AlertType.WARNING);
+		} else {
+			try {
+				Runtime.getRuntime().exec(
+						"cmd.exe /c del C:\\apps_para_padronizacao_V3\\trend_antivirus_apex\\antivirus_padrao_atualizado\\"
+								+ fileLocalName);
+				Runtime.getRuntime().exec(
+						"cmd.exe /c copy /Y \\\\dados\\seplan\\detic_coengi_seserc__softwares\\seguranca\\trend_antivirus\\cliente\\"
+								+ remoteFolder + "\\" + remoteFileName
+								+ " C:\\apps_para_padronizacao_V3\\trend_antivirus_apex\\antivirus_padrao_atualizado");
+				Alerts.showAlert("Sucesso na atualização", null, "Atualização realizada com sucesso",
+						AlertType.INFORMATION);
+			} catch (IOException e) {
+				Alerts.showAlert("Erro na atualização", null, "Houve um erro na atualização: " + e.getMessage(),
+						AlertType.ERROR);
+			}
+		}
 	}
 
 	@FXML
 	private void onBtUpdateUltraVNC() {
+		// Pegando o arquivo da pasta local
+		String strLocalPath = "C:\\apps_para_padronizacao_V3\\ultravnc\\ultravnc_padrao_atualizado";
+		File folderLocal = new File(strLocalPath);
+		File[] filesLocal = folderLocal.listFiles(File::isFile);
+		String fileLocalName = "";
+		for (File fileLocal : filesLocal) {
+			int indBat = fileLocal.getName().lastIndexOf("bat");
+			if (indBat != 10 && !fileLocal.getName().equals("uninstall.bat")) {
+				fileLocalName = fileLocal.getName();
+			}
+		}
 
+		// Encontrando o nome mais atualizado da pasta remota(servidor)
+		String strRemPath = "\\\\dados\\seplan\\detic_coengi_seserc__softwares\\conexao_remota\\ultravnc";
+		File remotePath = new File(strRemPath);
+		File[] remoteFolders = remotePath.listFiles(File::isDirectory);
+		String remoteFolder = "";
+		for (File remoteFolderServer : remoteFolders) {
+			remoteFolder = remoteFolderServer.getName();
+		}
+
+		// Pegando o arquivo da pasta remota
+		String strRemotePath = "\\\\dados\\seplan\\detic_coengi_seserc__softwares\\conexao_remota\\ultravnc\\"
+				+ remoteFolder;
+		File folderRemote = new File(strRemotePath);
+		File[] filesRemote = folderRemote.listFiles(File::isFile);
+		String remoteFileName = "";
+		for (File fileRemote : filesRemote) {
+			remoteFileName = fileRemote.getName();
+		}
+
+		// Verificando se o arquivo local é igual ao arquivo remoto
+		// Caso seja, então arquivo já atualizado, caso não, será atualizado pelo do
+		// remoto
+		if (fileLocalName.equals(remoteFileName)) {
+			Alerts.showAlert("Informação", null, "Este arquivo já está atualizado", AlertType.WARNING);
+		} else {
+			try {
+				Runtime.getRuntime()
+						.exec("cmd.exe /c del C:\\apps_para_padronizacao_V3\\ultravnc\\ultravnc_padrao_atualizado\\"
+								+ fileLocalName);
+				Runtime.getRuntime().exec(
+						"cmd.exe /c copy /Y \\\\dados\\seplan\\detic_coengi_seserc__softwares\\conexao_remota\\ultravnc\\"
+								+ remoteFolder + "\\" + remoteFileName
+								+ " C:\\apps_para_padronizacao_V3\\ultravnc\\ultravnc_padrao_atualizado");
+				Alerts.showAlert("Sucesso na atualização", null, "Atualização realizada com sucesso",
+						AlertType.INFORMATION);
+			} catch (IOException e) {
+				Alerts.showAlert("Erro na atualização", null, "Houve um erro na atualização: " + e.getMessage(),
+						AlertType.ERROR);
+			}
+		}
 	}
 
 }

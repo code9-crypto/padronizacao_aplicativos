@@ -10,14 +10,14 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="681.0" prefWidth="581.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainViewController">
+<AnchorPane prefHeight="715.0" prefWidth="581.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainViewController">
    <children>
       <Label layoutX="170.0" layoutY="5.0" text="Lista de Aplicativos" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="180.0">
          <font>
             <Font name="Times New Roman Bold" size="24.0" />
          </font>
       </Label>
-      <GridPane layoutX="14.0" layoutY="61.0" prefHeight="596.0" prefWidth="554.0">
+      <GridPane layoutX="14.0" layoutY="61.0" prefHeight="645.0" prefWidth="554.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="290.0" minWidth="10.0" prefWidth="290.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="274.0" minWidth="10.0" prefWidth="264.0" />
@@ -26,6 +26,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -548,6 +549,24 @@
                </font>
                <GridPane.margin>
                   <Insets left="85.0" />
+               </GridPane.margin>
+            </Label>
+            <Label text="Plano de fundo" GridPane.rowIndex="21">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnDefinirPlano" mnemonicParsing="false" onAction="#onBtDefinirPlanoDeFundo" prefHeight="25.0" prefWidth="252.0" text="Definir" GridPane.columnIndex="1" GridPane.rowIndex="21">
+               <GridPane.margin>
+                  <Insets left="7.5" />
+               </GridPane.margin>
+            </Button>
+            <Label fx:id="lblCheckPlano" prefHeight="35.0" prefWidth="90.0" textFill="RED" GridPane.rowIndex="21">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="125.0" />
                </GridPane.margin>
             </Label>
          </children>
